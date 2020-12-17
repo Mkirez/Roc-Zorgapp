@@ -13,4 +13,9 @@ class Competition extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function qualification_file()
+    {
+        return $this->belongsTo(Qualification_filer::class);
+    }
 }

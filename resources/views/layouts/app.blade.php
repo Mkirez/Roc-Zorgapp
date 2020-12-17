@@ -63,29 +63,25 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
 
                                 <a class="dropdown-item" id="dropdown-link" href="{{url('profile')}}">
-                                    profile
+                                    Profile
                                 </a>
 
                                 <a class="dropdown-item" id="dropdown-link" href="{{url('qualification_file')}}">
-                                    qualification file
+                                    Qualification file
                                 </a>
 
                                 <a class="dropdown-item" id="dropdown-link" href="{{url('log')}}">
-                                    log hours
-                                </a>
-
-                                <a class="dropdown-item" id="dropdown-link" href="{{url('studentgegevens')}}">
-                                    studentgegevens
+                                    Log hours
                                 </a>
 
                                 <a class="dropdown-item" id="dropdown-link" href="{{url('studentinfo')}}">
-                                    studentinfo
+                                    Studentinfo
+                                </a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
 

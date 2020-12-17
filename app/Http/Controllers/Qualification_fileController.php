@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Competition;
 use App\Models\Fileupload;
 use App\Models\Qualification_file;
 use GuzzleHttp\Psr7\UploadedFile;
@@ -13,10 +14,16 @@ class Qualification_fileController extends Controller
 {
     public function index()
     {
-        $files = Auth::user()->qualification_files();
+        if (Auth::user()->user_type == 1) {
+            $files = Qualification_file::all(); // student sees all qualification_files
+        } else {
+
+            $files = Auth::user()->qualification_files(); // education sees only his/hers qualification files
+        }
+
+        // dd($files);
 
         return view('qualification_file', compact('files'));
-
     }
 
     public function create()
@@ -31,14 +38,16 @@ class Qualification_fileController extends Controller
         return back();
     }
 
-    public function show()
+    public function show(Qualification_file $qualification_file)
     {
-        //
+        $competitions = Competition::all();
+        return view('qualification_file.show', compact('qualification_file', 'competitions'));
     }
 
-    public function edit()
+    public function edit(Qualification_file $qualification_file)
     {
-        //
+        // dd($qualification_file);
+        return view('qualification_file.edit', compact('qualification_file'));
     }
 
     public function update()
@@ -51,7 +60,7 @@ class Qualification_fileController extends Controller
         $sql = "DELETE FROM qualification_files WHERE id=$id";
 
         DB::update($sql);
-        
+
         return back();
     }
 

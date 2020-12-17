@@ -2,33 +2,42 @@
 
 
 @section('content')
+@if($files->count() > 0 )
+<div class="container">
+<div class="row">
+    @foreach ($files as $file )
 
-@if($files)
-<div class="row"></div>
-@foreach ($files as $file )
-
-<div class="col-md-4">
-    <div class="card" style="width: 18rem;">
-        <div class="col-md-10 text-center project-title" style="padding: 10px;">
-            <h1 class="card-title">{{$file->name}}</h1>
-        </div>
-
+<div class="col-sm-3">
+    <div class="card">
         <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <form method="post" action="{{url('qualification_file')}}/{{$file->id}}"> @csrf
-                        @method('DELETE')
-                        <button type="submit" onclick="delete_message()" class="btn btn-sm btn-outline-secondary">Verwijder</button>
-                    </form>
-                </div>
+            <h5 class="card-title">{{$file->name}}</h5>
+            <p class="card-text">Schooljaar: #</p>
+            <div class="items-center">
+                <a href="{{url('qualification_file')}}/{{$file->id}}" class="btn btn-sm btn-primary">View</a>
+                @if(Auth::user()->user_type == 0)
+                <form method="post" action="{{url('qualification_file')}}/{{$file->id}}"> @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                </form>
+                @endif
             </div>
         </div>
     </div>
 </div>
 @endforeach
 </div>
+</div>
+
+@else
+<div>No qualification files yet.</div>
 @endif
+
+
+
+
+
+<!-- create qualicication file form only for Education  -->
+@if(Auth::user()->user_type == 0)
 <div class="container">
     <form class="form-group" method="POST" enctype="multipart/form-data" action="{{route('qualification_file.store')}}">
         @csrf
@@ -49,5 +58,6 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+@endif
 
 @endsection

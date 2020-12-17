@@ -1,19 +1,17 @@
 @extends('layouts.app')
+
 @section('content')
-<!-- die action zegt ga in de todocontroller en pak de store methode/function -->
-
-
-
-
-<!-- projecten maken -->
-
 
 <div class="container">
       <!-- button -->
     <div class="row">
         <div class="col-md-12 text-right">
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add</button>
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Add</button>
         </div>
+        <div class="col-md-12 text-left">
+            <h1>Log Hours</h1>
+        </div>
+            
     </div>
 
 
@@ -51,7 +49,7 @@
             </div>
         </div>
     </div>
-    <table class="table table-hover table-dark">
+    <table class="table table-striped table-sm table-hover">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -59,6 +57,7 @@
                 <th scope="col">Hours</th>
                 <th scope="col">Date</th>
                 <th scope="col">Confirmed</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -77,7 +76,7 @@
                     <form method="POST" action="{{url('log')}}/{{$log->id}}">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" onclick="delete_message()" class="btn btn-sm btn-outline-secondary">Remove</button>
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">Remove</button>
                     </form>
                 </td>
             </tr>

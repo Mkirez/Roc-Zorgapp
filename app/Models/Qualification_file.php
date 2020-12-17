@@ -15,4 +15,14 @@ class Qualification_file extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function competitions()
+    {
+        return $this->hasMany(Competition::class);
+    }
+
+    public function getFileAttribute($value)
+    {
+        return asset('storage/' . $value);
+    }
 }
