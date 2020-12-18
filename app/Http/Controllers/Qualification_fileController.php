@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Competition;
-use App\Models\Fileupload;
 use App\Models\Qualification_file;
-use GuzzleHttp\Psr7\UploadedFile;
+use App\Models\Competition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
