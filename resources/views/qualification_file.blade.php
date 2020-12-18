@@ -14,7 +14,7 @@
             <p class="card-text">Schooljaar: #</p>
             <div class="items-center">
                 <a href="{{url('qualification_file')}}/{{$file->id}}" class="btn btn-sm btn-primary">View</a>
-                @if(Auth::user()->user_type == 0)
+                @if(auth()->user()->education())
                 <form method="post" action="{{url('qualification_file')}}/{{$file->id}}"> @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-danger">Remove</button>
@@ -37,7 +37,7 @@
 
 
 <!-- create qualicication file form only for Education  -->
-@if(Auth::user()->user_type == 0)
+@if(auth()->user()->education())
 <div class="container">
     <form class="form-group" method="POST" enctype="multipart/form-data" action="{{route('qualification_file.store')}}">
         @csrf

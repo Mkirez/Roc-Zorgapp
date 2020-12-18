@@ -8,9 +8,9 @@
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">File</th>
+                <th scope="col">Qualification file</th>
                 <th scope="col">Achieved</th>
-                <th scope="col">Confirmed</th>
-                <th scope="col">Confirmed</th>
+                <th scope="col">Date</th>
             </tr>
         </thead>
         <tbody>

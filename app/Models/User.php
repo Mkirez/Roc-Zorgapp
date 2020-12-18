@@ -11,11 +11,6 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
         'email',
@@ -23,24 +18,16 @@ class User extends Authenticatable
         'user_type',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // -------------------------- Relationships --------------------------
 
     public function logs()
     {
@@ -55,5 +42,22 @@ class User extends Authenticatable
     public function qualification_files()
     {
         return $this->hasMany(Qualification_file::class)->latest()->get();
+    }
+
+    // -------------------------- ROLES --------------------------
+
+    public function education()
+    {
+        return $this->user_type == 0;
+    }
+
+    public function student()
+    {
+        return $this->user_type == 1;
+    }
+
+    public function bpv()
+    {
+        return $this->user_type == 2;
     }
 }
