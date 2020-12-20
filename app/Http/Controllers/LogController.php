@@ -13,41 +13,19 @@ class LogController extends Controller
     {
         $logs = Auth::user()->logs();
 
-        return view('student.log', ['logs' => $logs]);
+        return view('student.log', compact('logs'));
     }
 
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
+    public function store()
     {
         Log::create($this->validateLog());
 
         return back();
     }
 
-    public function show(Log $ureninfo)
-    {
-        //
-    }
-
-    public function edit(Log $ureninfo)
-    {
-        //
-    }
-
-    public function update(Request $request, Log $ureninfo)
-    {
-        //
-    }
-
     public function destroy($id)
     {
-        $sql = "DELETE FROM logs WHERE id=$id";
-
-        DB::update($sql);
+        DB::update("DELETE FROM logs WHERE id=$id");
         
         return back();
     }

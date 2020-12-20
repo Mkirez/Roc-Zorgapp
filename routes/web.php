@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\http\Controllers\ProfileController;
+use App\http\Controllers\ProfilesController;
 use App\http\Controllers\StudentinfoController;
 use App\http\Controllers\LogController;
 use App\http\Controllers\Qualification_fileController;
@@ -16,16 +16,19 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('profile', ProfileController::class);
+    Route::resource('log', LogController::class);
+    
+    Route::resource('qualification_file', Qualification_fileController::class);
+    
+    Route::resource('competition', CompetitionController::class);
 
-Route::resource('studentinfo', StudentinfoController::class);
+    Route::get('/profiles/{user}', [App\Http\Controllers\ProfilesController::class, 'show'])->name('profile');
 
-Route::resource('log', LogController::class);
-
-Route::resource('qualification_file', Qualification_fileController::class);
-
-Route::resource('competition', CompetitionController::class);
-// Route::post('qualification_file', [App\Http\Controllers\Qualification_fileController::class, 'storeCompetition']);
+    Route::resource('profiles', ProfilesController::class);
+    
+    Route::resource('studentinfo', StudentinfoController::class);
 });
+// Route::resource('profiles', ProfilesController::class);
+
