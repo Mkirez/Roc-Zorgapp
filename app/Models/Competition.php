@@ -20,4 +20,9 @@ class Competition extends Model
     {
         return $this->belongsTo(Qualification_file::class);
     }
+
+    public function getFileAttribute($value)
+    {
+        return asset('storage/' . $value);
+    }
 }
