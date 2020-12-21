@@ -24,11 +24,10 @@ Route::middleware('auth')->group(function () {
     
     Route::resource('competition', CompetitionController::class);
 
+    Route::get('/profiles', [App\Http\Controllers\ProfilesController::class, 'index']);
     Route::get('/profiles/{user}', [App\Http\Controllers\ProfilesController::class, 'show'])->name('profile');
+    Route::patch('/profiles/{user}', [App\Http\Controllers\ProfilesController::class, 'update']);
 
-    Route::resource('profiles', ProfilesController::class);
-    
     Route::resource('studentinfo', StudentinfoController::class);
 });
-// Route::resource('profiles', ProfilesController::class);
 

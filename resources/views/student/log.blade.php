@@ -3,52 +3,18 @@
 @section('content')
 
 <div class="container">
-      <!-- button -->
+    <!-- button -->
     <div class="row">
         <div class="col-md-12 text-right">
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Add</button>
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#logModal">Add</button>
         </div>
         <div class="col-md-12 text-left">
             <h1>Log Hours</h1>
         </div>
-            
+
     </div>
 
 
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <form method="POST" action="log">
-                    @csrf
-                    <input type="text" hidden name="user_id" value="{{ Auth()->id() }}">
-                    <input type="text" hidden name="confirmed" value="0">
-                    <div class="col-md-12 inner-text">
-                        <h1>Log hours</h1>
-                    </div>
-                    <div class="inner-form">
-                        <div class="form-group">
-                            <label for="description">Description</label>
-                            <input type="text" name="description" class="form-control" id="description">
-                        </div>
-                        <div class="form-group">
-                            <label for="hours">Hours</label>
-                            <input type="text" name="hours" class="form-control" id="hours">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="date">Date</label>
-                            <input type="date" name="date" class="form-control" id="date">
-                        </div>
-
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     <table class="table table-striped table-sm table-hover">
         <thead>
             <tr>
@@ -83,5 +49,39 @@
             @endforeach
         </tbody>
     </table>
+</div>
+
+<div class="modal fade" id="logModal" tabindex="-1" role="dialog" aria-labelledby="profileLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="profileLabel">User information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-group" method="POST" action="log">
+                    @csrf
+                    <input type="text" hidden name="user_id" value="{{ Auth()->id() }}">
+                    <input type="text" hidden name="confirmed" value="0">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" name="description" class="form-control" id="description">
+                    </div>
+                    <div class="form-group">
+                        <label for="hours">Hours</label>
+                        <input type="text" name="hours" class="form-control" id="hours">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" name="date" class="form-control" id="date">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

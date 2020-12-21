@@ -13,7 +13,7 @@
                 <p>email: {{ $user->email }}</p>
             </div>
             <div>
-                <p>orginization: {{ $user->orginization }}</p>
+                <p>orginization: {{ $user->organization }}</p>
             </div>
             @if(auth()->user() == $user)
             <div>
@@ -39,26 +39,31 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="form-group" method="POST" action="">
-                    @method('PATCH')
+                <form class="form-group" method="POST" action="/profiles/{{ $user->id }}">
                     @csrf
-                    <input type="text" hidden name="user_id" value="{{ Auth()->id() }}">
-                    <input type="text" hidden name="qualification_file_id" value="">
-                    <input type="text" hidden name="achieved" value="0">
-
+                    @method('PATCH')
+                    <input type="text" hidden name="user_type" value="{{ $user->user_type }}">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" name="name" class="form-control" id="name" value="{{ $user->name }}">
+                        <input type="text" name="name" class="form-control" id="name" value="{{ $user->name }}" required>
                     </div>
                     <div class="form-group ">
                         <label for="email">Email address</label>
-                        <input type="email" name="email" class="form-control" id="email" value="{{ $user->email }}">
+                        <input type="email" name="email" class="form-control" id="email" value="{{ $user->email }}" required>
                     </div>
                     <div class="form-group ">
-                        <label for="orginization">Stagebedrijf</label>
-                        <input type="text" name="orginization" class="form-control" id="orginization" placeholder="???" value="{{ $user->orginization }}">
+                        <label for="organization">Organization</label>
+                        <input type="text" name="organization" class="form-control" id="organization" placeholder="???">
                     </div>
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <div class="form-group ">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" required>
+                    </div>
+                    <div class="form-group ">
+                        <label for="password_confirmation">Password Confirmation</label>
+                        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </form>
             </div>
         </div>

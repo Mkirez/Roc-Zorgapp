@@ -21,7 +21,7 @@ class Qualification_fileController extends Controller
 
         // dd($files);
 
-        return view('qualification_file', compact('files'));
+        return view('qualification_file.index', compact('files'));
     }
 
     public function create()
@@ -44,7 +44,6 @@ class Qualification_fileController extends Controller
 
     public function edit(Qualification_file $qualification_file)
     {
-        // dd($qualification_file);
         return view('qualification_file.edit', compact('qualification_file'));
     }
 
