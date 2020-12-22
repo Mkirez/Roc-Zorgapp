@@ -53,7 +53,7 @@
                     </div>
                     <div class="form-group ">
                         <label for="organization">Organization</label>
-                        <input type="text" name="organization" class="form-control" id="organization" placeholder="???">
+                        <input type="text" name="organization" class="form-control" id="organization" placeholder="???" value="{{ $user->organization }}" required>
                     </div>
                     <div class="form-group ">
                         <label for="password">Password</label>
@@ -69,4 +69,18 @@
         </div>
     </div>
 </div>
+<br>
+@if(auth()->user()->education() && $user->student())
+<div class="container ">
+<h5>Werkprocessen</h5>
+    <ul class="list-group">
+        <a href=""><li class="list-group-item"aria-current="true">Hier komen de werk bestanden</li></a>
+        <a href=""><li class="list-group-item"aria-current="true">Hier komen de werk bestanden</li></a>
+        <a href=""><li class="list-group-item"aria-current="true">Hier komen de werk bestanden</li></a>
+        <a href=""><li class="list-group-item"aria-current="true">Hier komen de werk bestanden</li></a>
+        <a href=""><li class="list-group-item"aria-current="true">Hier komen de werk bestanden</li></a>
+    </ul>
+
+</div>
+@endif
 @endsection

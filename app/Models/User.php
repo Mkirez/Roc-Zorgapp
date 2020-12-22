@@ -37,7 +37,7 @@ class User extends Authenticatable
 
     public function competitions()
     {
-        return $this->hasMany(Competition::class)->latest();
+        return $this->hasMany(Competition::class)->latest()->get();
     }
 
     public function qualification_files()

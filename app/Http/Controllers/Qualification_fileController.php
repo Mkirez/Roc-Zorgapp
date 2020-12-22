@@ -38,7 +38,8 @@ class Qualification_fileController extends Controller
 
     public function show(Qualification_file $qualification_file)
     {
-        $competitions = Competition::all();
+        $competitions = Auth::user()->competitions();
+        // $competitions = Competition::all();
         return view('qualification_file.show', compact('qualification_file', 'competitions'));
     }
 

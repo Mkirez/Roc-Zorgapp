@@ -13,7 +13,7 @@ class LogController extends Controller
     {
         $logs = Auth::user()->logs();
 
-        return view('student.log', compact('logs'));
+        return view('log', compact('logs'));
     }
 
     public function store()
