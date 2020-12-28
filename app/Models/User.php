@@ -45,6 +45,11 @@ class User extends Authenticatable
         return $this->hasMany(Qualification_file::class)->latest()->get();
     }
 
+    public function interns_at()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
     // -------------------------- ROLES --------------------------
 
     public function education()

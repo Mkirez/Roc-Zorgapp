@@ -12,8 +12,9 @@ class Qualification_fileController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->user_type == 1) {
+        if (Auth::user()->student()) {
             $files = Qualification_file::all(); // student sees all qualification_files
+
         } else {
 
             $files = Auth::user()->qualification_files(); // education sees only his/hers qualification files

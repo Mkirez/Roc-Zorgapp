@@ -23,9 +23,19 @@
                 Edit
             </button>
             @endif
+            <div>
+                <p>Intern at</p>
+                <select name="user_type" id="user_type">
+                    <option value="#">Choose</option>
+                    <option value="0">Education</option>
+                    <option value="1">Student</option>
+                    <option value="2">BPV</option>
+                </select>
+            </div>
         </div>
     </div>
 </div>
+
 
 
 <!-- modal -->
@@ -72,13 +82,23 @@
 <br>
 @if(auth()->user()->education() && $user->student())
 <div class="container ">
-<h5>Werkprocessen</h5>
+    <h5>Werkprocessen</h5>
     <ul class="list-group">
-        <a href=""><li class="list-group-item"aria-current="true">Hier komen de werk bestanden</li></a>
-        <a href=""><li class="list-group-item"aria-current="true">Hier komen de werk bestanden</li></a>
-        <a href=""><li class="list-group-item"aria-current="true">Hier komen de werk bestanden</li></a>
-        <a href=""><li class="list-group-item"aria-current="true">Hier komen de werk bestanden</li></a>
-        <a href=""><li class="list-group-item"aria-current="true">Hier komen de werk bestanden</li></a>
+        <a href="">
+            <li class="list-group-item" aria-current="true">Hier komen de werk bestanden</li>
+        </a>
+        <a href="">
+            <li class="list-group-item" aria-current="true">Hier komen de werk bestanden</li>
+        </a>
+        <a href="">
+            <li class="list-group-item" aria-current="true">Hier komen de werk bestanden</li>
+        </a>
+        <a href="">
+            <li class="list-group-item" aria-current="true">Hier komen de werk bestanden</li>
+        </a>
+        <a href="">
+            <li class="list-group-item" aria-current="true">Hier komen de werk bestanden</li>
+        </a>
     </ul>
 
 </div>
