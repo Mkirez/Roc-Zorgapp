@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\http\Controllers\ProfilesController;
 use App\http\Controllers\StudentinfoController;
+use App\http\Controllers\InternshipController;
 use App\http\Controllers\LogController;
 use App\http\Controllers\Qualification_fileController;
 use App\http\Controllers\CompetitionController;
@@ -27,6 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profiles', [App\Http\Controllers\ProfilesController::class, 'index']);
     Route::get('/profiles/{user}', [App\Http\Controllers\ProfilesController::class, 'show'])->name('profile');
     Route::patch('/profiles/{user}', [App\Http\Controllers\ProfilesController::class, 'update']);
+
+    Route::resource('/profiles/intern', InternshipController::class);
+
 
     Route::resource('studentinfo', StudentinfoController::class);
 });

@@ -23,7 +23,8 @@ class ProfilesController extends Controller
 
     public function show(User $user)
     {
-        return view('profiles.show', compact('user'));
+        $bpvs = DB::table('users')->where('user_type', 2)->get();
+        return view('profiles.show', compact('user', 'bpvs'));
     }
 
     public function update(User $user)

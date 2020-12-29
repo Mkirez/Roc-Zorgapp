@@ -28,6 +28,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function intern(User $user){
+        return $this->interns_at()->save($user);
+    }
+
     // -------------------------- Relationships --------------------------
 
     public function logs()
@@ -47,7 +51,7 @@ class User extends Authenticatable
 
     public function interns_at()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'interns_at', 'user_id', 'bpv_user_id');
     }
 
     // -------------------------- ROLES --------------------------

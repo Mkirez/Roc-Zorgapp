@@ -25,12 +25,16 @@
             @endif
             <div>
                 <p>Intern at</p>
-                <select name="user_type" id="user_type">
-                    <option value="#">Choose</option>
-                    <option value="0">Education</option>
-                    <option value="1">Student</option>
-                    <option value="2">BPV</option>
-                </select>
+                <form method="POST" action="intern">
+                @csrf
+                    <select name="bpv">
+                        <option value="#">Choose</option>
+                        @foreach ($bpvs as $bpv)
+                        <option value="{{ $bpv->id }}">{{ $bpv->name }}</option>
+                        @endforeach
+                    </select>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
             </div>
         </div>
     </div>

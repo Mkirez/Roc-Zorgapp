@@ -20,10 +20,10 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $file->name }}</h5>
                     <p class="card-text">Schooljaar: #</p>
-                    <div class="items-center">
-                        @if(auth()->user()->student())
+                    <div class="flex">
+                        <!-- @if(auth()->user()->student()) -->
                         <a href="{{url('qualification_file')}}/{{$file->id}}" class="btn btn-sm btn-primary">View</a>
-                        @endif
+                        <!-- @endif -->
                         @if(auth()->user()->education())
                         <form method="post" action="{{url('qualification_file')}}/{{$file->id}}"> @csrf
                             @method('DELETE')
