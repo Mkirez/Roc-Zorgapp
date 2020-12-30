@@ -14,10 +14,8 @@ class ProfilesController extends Controller
 {
     public function index()
     {
-        $students = DB::table('users')->where('user_type', 1)->get();
+        $students = User::where('user_type', 1)->get();
 
-        // dd($students);
-        
         return view('profiles.index', compact('students'));
     }
 

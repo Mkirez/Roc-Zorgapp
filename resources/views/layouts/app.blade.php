@@ -65,7 +65,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                
+                                @if(!auth()->user()->bpv())
                                 <a class="dropdown-item" id="dropdown-link" href="{{ url('qualification_file') }}">
                                     @if(auth()->user()->education())
                                         Qualification file
@@ -73,17 +73,15 @@
                                         Competitions
                                     @endif
                                 </a>
-                                
+                                @endif
+
                                 @if(auth()->user()->student())
                                 <a class="dropdown-item" id="dropdown-link" href="{{ url('log') }}">
                                     Log hours
                                 </a>
                                 @endif
-                                
-                                <!-- <a class="dropdown-item" id="dropdown-link" href="{{ url('studentinfo') }}">
-                                    Studentinfo
-                                </a> -->
-                                @if(auth()->user()->education())
+
+                                @if(auth()->user()->education() || auth()->user()->bpv())
                                 <a class="dropdown-item" id="dropdown-link" href="{{ url('profiles') }}">
                                     Students
                                 </a>

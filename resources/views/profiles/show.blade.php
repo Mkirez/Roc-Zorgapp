@@ -23,6 +23,7 @@
                 Edit
             </button>
             @endif
+            @if(auth()->user()->student())
             <div>
                 <p>Intern at</p>
                 <form method="POST" action="intern">
@@ -30,12 +31,14 @@
                     <select name="bpv">
                         <option value="#">Choose</option>
                         @foreach ($bpvs as $bpv)
+                        
                         <option value="{{ $bpv->id }}">{{ $bpv->name }}</option>
                         @endforeach
                     </select>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
             </div>
+            @endif
         </div>
     </div>
 </div>

@@ -18,9 +18,9 @@
             <tr>
                 <th scope="row">{{ $student->id }}</th>
                 <th scope="row">{{ $student->name }}</th>
-                <th scope="row">{{ $student->organization }}</th>
+                <th scope="row">{{ $student->interns_at()->pluck('name')->first() ?: '???' }}</th>
                 <th scope="row"></th>
-                <th scope="row"></th>
+                <th scope="row">{{ $student->logs()->sum('hours') }}</th>
                 <th scope="row">{{ date('d/m/Y', strtotime($student->created_at)) }}</th>
                 <td>
                     <a href="{{ route('profile', $student->id) }}">view</a>
