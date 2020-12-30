@@ -34,7 +34,7 @@ class LogController extends Controller
     {
         return request()->validate([
             'description' => 'required',
-            'hours' => 'required',
+            'hours' => 'required|integer',
             'date' => 'required',
             'user_id' => 'required',
             'confirmed' => 'required',

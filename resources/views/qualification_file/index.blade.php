@@ -64,15 +64,27 @@
                         <input type="text" hidden name="user_id" value="{{ Auth()->id() }}">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" name="name" class="form-control" id="name">
+                            <input type="text" name="name" class="form-control" id="name" required>
+
+                            @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="file">File</label>
-                            <input type="file" name="file" class="form-control" id="file">
+                            <input type="file" name="file" class="form-control" id="file" required>
+
+                            @error('file')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="total_number_of_competitions">Total number of competitions</label>
-                            <input type="text" name="total_number_of_competitions" class="form-control" id="total_number_of_competitions">
+                            <input type="text" name="total_number_of_competitions" class="form-control" id="total_number_of_competitions" required>
+
+                            @error('total_number_of_competitions')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">Create</button>
                 </form>
@@ -80,6 +92,13 @@
         </div>
     </div>
 </div>
+@endif
+@if (count($errors) > 0)
+    <script>
+        $( document ).ready(function() {
+            $('#exampleModal').modal('show');
+        });
+    </script>
 @endif
 
 @endsection

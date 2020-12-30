@@ -69,7 +69,7 @@ class Qualification_fileController extends Controller
             'name' => 'required',
             'file' => 'required',
             'user_id' => 'required',
-            'total_number_of_competitions' => 'required',
+            'total_number_of_competitions' => 'required|integer',
         ]);
 
         $attributes['file'] = request('file')->store('qualification_files');

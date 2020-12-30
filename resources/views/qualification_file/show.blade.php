@@ -31,11 +31,19 @@
                             <input type="text" hidden name="achieved" value="0">
 
                             <label for="name" class="col-form-label">Name:</label>
-                            <input type="text" name="name" class="form-control" id="name">
+                            <input type="text" name="name" class="form-control" id="name" required>
+
+                            @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="file" class="col-form-label">File:</label>
-                            <input type="file" name="file" class="form-control" id="file">
+                            <input type="file" name="file" class="form-control" id="file" required>
+
+                            @error('file')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">Create</button>
                     </form>

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
+
 @section('content')
+
 
 <div class="container">
     <!-- button -->
@@ -65,18 +67,31 @@
                     @csrf
                     <input type="text" hidden name="user_id" value="{{ Auth()->id() }}">
                     <input type="text" hidden name="confirmed" value="0">
+
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <input type="text" name="description" class="form-control" id="description">
+                        <input type="text" name="description" class="form-control" id="description" value="{{ old('description') }}" required>
+
+                        @error('description')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="hours">Hours</label>
-                        <input type="text" name="hours" class="form-control" id="hours">
+                        <input type="text" name="hours" class="form-control" id="hours" value="{{ old('hours') }}" required>
+
+                        @error('hours')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="date">Date</label>
-                        <input type="date" name="date" class="form-control" id="date">
+                        <input type="date" name="date" class="form-control" id="date" value="{{ old('date' )}}" required>
+                        @error('date')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
@@ -84,4 +99,12 @@
         </div>
     </div>
 </div>
+@if (count($errors) > 0)
+    <script>
+        $( document ).ready(function() {
+            $('#logModal').modal('show');
+        });
+    </script>
+@endif
+
 @endsection
