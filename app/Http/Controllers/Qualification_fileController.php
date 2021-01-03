@@ -20,14 +20,7 @@ class Qualification_fileController extends Controller
             $files = Auth::user()->qualification_files(); // education sees only his/hers qualification files
         }
 
-        // dd($files);
-
         return view('qualification_file.index', compact('files'));
-    }
-
-    public function create()
-    {
-        //
     }
 
     public function store()
@@ -40,18 +33,16 @@ class Qualification_fileController extends Controller
     public function show(Qualification_file $qualification_file)
     {
         $competitions = Auth::user()->competitions();
-        // $competitions = Competition::all();
+
         return view('qualification_file.show', compact('qualification_file', 'competitions'));
     }
 
-    public function edit(Qualification_file $qualification_file)
+    public function update(Qualification_file $qualification_file)
     {
-        return view('qualification_file.edit', compact('qualification_file'));
-    }
+        // dd($qualification_file);
+        $qualification_file->update($this->validateQualification_file());
 
-    public function update()
-    {
-        //
+        return back();
     }
 
     public function destroy($id)
@@ -67,12 +58,14 @@ class Qualification_fileController extends Controller
     {
         $attributes = request()->validate([
             'name' => 'required',
-            'file' => 'required',
+            'file' => ['file'],
             'user_id' => 'required',
             'total_number_of_competitions' => 'required|integer',
         ]);
-
-        $attributes['file'] = request('file')->store('qualification_files');
+        
+        if (request('file')) {
+            $attributes['file'] = request('file')->storeAs('qualification_files', request('file')->getClientOriginalName());
+        }
 
         return $attributes;
     }

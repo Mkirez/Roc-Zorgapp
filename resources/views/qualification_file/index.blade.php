@@ -21,14 +21,15 @@
                     <h5 class="card-title">{{ $file->name }}</h5>
                     <p class="card-text">Schooljaar: #</p>
                     <div class="flex">
-                        <!-- @if(auth()->user()->student()) -->
+                        @if(auth()->user()->student())
                         <a href="{{url('qualification_file')}}/{{$file->id}}" class="btn btn-sm btn-primary">View</a>
-                        <!-- @endif -->
+                        @endif
                         @if(auth()->user()->education())
                         <form method="post" action="{{url('qualification_file')}}/{{$file->id}}"> @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete {{ $file->name }}?')" data-toggle="confirmation">Remove</button>
                         </form>
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalTwo{{ $file->id }}">Edit</button>
                         @endif
                     </div>
                 </div>
@@ -46,59 +47,115 @@
 
 
 
-<!-- modal  -->
+<!-- create modal  -->
 @if(auth()->user()->education())
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New Qualification</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form class="form-group" method="POST" enctype="multipart/form-data" action="{{ route('qualification_file.store') }}">
-                    @csrf
-                    <div>
-                        <input type="text" hidden name="user_id" value="{{ Auth()->id() }}">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" name="name" class="form-control" id="name" required>
+<div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Qualification</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group" method="POST" enctype="multipart/form-data" action="{{ route('qualification_file.store') }}">
+                        @csrf
+                        <div>
+                            <input type="text" hidden name="user_id" value="{{ Auth()->id() }}">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" class="form-control" id="name" required>
 
-                            @error('name')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="file">File</label>
-                            <input type="file" name="file" class="form-control" id="file" required>
+                                @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="file">File (.pdf only)</label>
+                                <input type="file" accept=".pdf" name="file" class="form-control" id="file" required>
 
-                            @error('file')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="total_number_of_competitions">Total number of competitions</label>
-                            <input type="text" name="total_number_of_competitions" class="form-control" id="total_number_of_competitions" required>
+                                @error('file')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="total_number_of_competitions">Total number of competitions</label>
+                                <input type="text" name="total_number_of_competitions" class="form-control" id="total_number_of_competitions" required>
 
-                            @error('total_number_of_competitions')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <button type="submit" class="btn btn-primary">Create</button>
-                </form>
+                                @error('total_number_of_competitions')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- edit modal -->
+@foreach ($files as $file )
+<div>
+    <div class="modal fade" id="modalTwo{{ $file->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Qualification</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group" method="POST" enctype="multipart/form-data" action="{{ route('qualification_file.update', $file->id ) }}">
+                    @csrf
+                    @method('PATCH')
+                        <div>
+                            <input type="text" hidden name="user_id" value="{{ Auth()->id() }}">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" class="form-control" id="name" value="{{ $file->name }}" required>
+
+                                @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="file">File (.pdf only)</label>
+                                <div>
+                                <a target="_blank" href="{{ $file->file }}">{{ basename($file->file) }}</a>
+                                </div>
+                                <input type="file" accept=".pdf" name="file" class="form-control" id="file" value="{{ $file->file }}">
+
+                                @error('file')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="total_number_of_competitions">Total number of competitions</label>
+                                <input type="text" name="total_number_of_competitions" class="form-control" id="total_number_of_competitions" value="{{ $file->total_number_of_competitions }}" required>
+
+                                @error('total_number_of_competitions')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 @endif
 @if (count($errors) > 0)
-    <script>
-        $( document ).ready(function() {
-            $('#exampleModal').modal('show');
-        });
-    </script>
+<script>
+    $(document).ready(function() {
+        $('#exampleModal').modal('show');
+    });
+</script>
 @endif
 
 @endsection

@@ -8,9 +8,28 @@ use Illuminate\Http\Request;
 
 class CompetitionController extends Controller
 {
-    public function store()
+    public function store(Request $request)
     {
+        // dd($request);
         Competition::create($this->validateCompetition());
+
+        return back();
+    }
+
+    public function update(Request $request, Competition $competition)
+    {
+        $competition->update($this->validateCompetition());
+
+        return back();
+    }
+
+    public function approveCompetition(Competition $competition)
+    {
+        if ($competition->achieved == 0) {
+            $competition->update(['achieved' => 1]);
+        } else {
+            $competition->update(['achieved' => 0]);
+        }
 
         return back();
     }
@@ -19,13 +38,15 @@ class CompetitionController extends Controller
     {
         $attributes = request()->validate([
             'name' => 'required',
-            'file' => 'required',
+            'file' => ['file'],
             'user_id' => 'required',
             'achieved' => 'required',
             'qualification_file_id' => 'required',
         ]);
 
-        $attributes['file'] = request('file')->store('competitions_files');
+        if (request('file')) {
+            $attributes['file'] = request('file')->storeAs('competitions_files', request('file')->getClientOriginalName());
+        }
 
         return $attributes;
     }

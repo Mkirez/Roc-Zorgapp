@@ -30,6 +30,17 @@ class LogController extends Controller
         return back();
     }
 
+    public function approveLog(Log $log)
+    {
+        if ($log->confirmed == 0) {
+            $log->update(['confirmed' => 1]);
+        } else {
+            $log->update(['confirmed' => 0]);
+        }
+
+        return back();
+    }
+
     protected function validateLog()
     {
         return request()->validate([

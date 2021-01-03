@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-
-
 <div class="container">
     <div class="row">
         <div class="col-4">
@@ -27,11 +25,11 @@
             <div>
                 <p>Intern at</p>
                 <form method="POST" action="intern">
-                @csrf
+                    @csrf
                     <select name="bpv">
                         <option value="#">Choose</option>
                         @foreach ($bpvs as $bpv)
-                        
+
                         <option value="{{ $bpv->id }}">{{ $bpv->name }}</option>
                         @endforeach
                     </select>
@@ -43,9 +41,6 @@
     </div>
 </div>
 
-
-
-<!-- modal -->
 <div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="profileLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -89,25 +84,35 @@
 <br>
 @if(auth()->user()->education() && $user->student())
 <div class="container ">
-    <h5>Werkprocessen</h5>
+    <h5>Competitions</h5>
     <ul class="list-group">
-        <a href="">
-            <li class="list-group-item" aria-current="true">Hier komen de werk bestanden</li>
-        </a>
-        <a href="">
-            <li class="list-group-item" aria-current="true">Hier komen de werk bestanden</li>
-        </a>
-        <a href="">
-            <li class="list-group-item" aria-current="true">Hier komen de werk bestanden</li>
-        </a>
-        <a href="">
-            <li class="list-group-item" aria-current="true">Hier komen de werk bestanden</li>
-        </a>
-        <a href="">
-            <li class="list-group-item" aria-current="true">Hier komen de werk bestanden</li>
-        </a>
-    </ul>
+        @foreach ($user->competitions() as $competition)
 
+            <li class="list-group-item" aria-current="true">{{ $competition->name }}</li>
+            <form method="POST" action="{{ route('approveCompetition', $competition->id) }}">
+                @csrf
+                @method('PATCH')
+                <button type="submit" class="btn btn-sm btn-outline-secondary">{{ $competition->achieved == 0 ? 'Approve' : 'Undo' }}</button>
+            </form>
+
+        @endforeach
+    </ul>
+    <br>
+    <h5>Logs</h5>
+    <ul class="list-group">
+        @foreach ($user->logs() as $log)
+        <li class="list-group-item" aria-current="true">
+            <p>{{ $log->description }}</p>
+            <p>{{ $log->hours }}</p>
+            <form method="POST" action="{{ route('approveLog', $log->id) }}">
+                @csrf
+                @method('PATCH')
+                <button type="submit" class="btn btn-sm btn-outline-secondary">{{ $log->confirmed == 0 ? 'Approve' : 'Undo' }}</button>
+            </form>
+        </li>
+
+        @endforeach
+    </ul>
 </div>
 @endif
 @endsection

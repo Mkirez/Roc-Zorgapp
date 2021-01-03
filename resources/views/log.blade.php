@@ -41,7 +41,7 @@
                 <th scope="row">Yes</th>
                 @endif
                 <td>
-                    <form method="POST" action="{{url('log')}}/{{$log->id}}">
+                    <form method="POST" action="{{ url('log')}}/{{$log->id }}">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-outline-secondary">Remove</button>
