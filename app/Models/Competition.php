@@ -21,8 +21,10 @@ class Competition extends Model
         return $this->belongsTo(Qualification_file::class);
     }
 
-    public function getFileAttribute($value)
+    public function student_files()
     {
-        return asset('storage/' . $value);
+        return $this->hasMany(Student_file::class);
     }
+
+    
 }

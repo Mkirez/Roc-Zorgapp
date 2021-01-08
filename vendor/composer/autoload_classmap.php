@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\ApproveController' => $baseDir . '/app/Http/Controllers/ApproveController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
@@ -17,6 +18,7 @@ return array(
     'App\\Http\\Controllers\\CompetitionController' => $baseDir . '/app/Http/Controllers/CompetitionController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\InternshipController' => $baseDir . '/app/Http/Controllers/InternshipController.php',
     'App\\Http\\Controllers\\LogController' => $baseDir . '/app/Http/Controllers/LogController.php',
     'App\\Http\\Controllers\\ProfilesController' => $baseDir . '/app/Http/Controllers/ProfilesController.php',
     'App\\Http\\Controllers\\Qualification_fileController' => $baseDir . '/app/Http/Controllers/Qualification_fileController.php',
@@ -33,6 +35,7 @@ return array(
     'App\\Models\\Competition' => $baseDir . '/app/Models/Competition.php',
     'App\\Models\\Log' => $baseDir . '/app/Models/Log.php',
     'App\\Models\\Qualification_file' => $baseDir . '/app/Models/Qualification_file.php',
+    'App\\Models\\Student_file' => $baseDir . '/app/Models/Student_file.php',
     'App\\Models\\Studentgegevens' => $baseDir . '/app/Models/Studentgegevens.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\studentinfo' => $baseDir . '/app/Models/studentinfo.php',

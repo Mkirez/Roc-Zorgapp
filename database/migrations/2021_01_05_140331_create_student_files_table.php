@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQualificationFilesTable extends Migration
+class CreateStudentFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateQualificationFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('qualification_files', function (Blueprint $table) {
+        Schema::create('student_files', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->text('file');
+            $table->boolean('achieved');
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('competition_id')->constrained();
             $table->timestamps();
+
         });
     }
 
@@ -29,6 +31,6 @@ class CreateQualificationFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('qualification_files');
+        Schema::dropIfExists('student_files');
     }
 }

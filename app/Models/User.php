@@ -28,7 +28,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function intern(User $user){
+    public function intern(User $user)
+    {
         return $this->interns_at()->save($user);
     }
 
@@ -52,6 +53,16 @@ class User extends Authenticatable
     public function interns_at()
     {
         return $this->belongsToMany(User::class, 'interns_at', 'user_id', 'bpv_user_id');
+    }
+
+    public function interns()
+    {
+        return $this->belongsToMany(User::class, 'interns_at', 'bpv_user_id', 'user_id');
+    }
+
+    public function student_files()
+    {
+        return $this->hasMany(Student_file::class)->latest()->get();
     }
 
     // -------------------------- ROLES --------------------------

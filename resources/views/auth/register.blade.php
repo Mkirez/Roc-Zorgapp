@@ -13,11 +13,11 @@
                         <div class="form-group row">
                             <label for="user_type" class="col-md-4 col-form-label text-md-right">User Type</label>
                             <div class="col-md-6">
-                                <select name="user_type" id="user_type">
-                                    <option value="#">Choose</option>
-                                    <option value="0">Education</option>
-                                    <option value="1">Student</option>
-                                    <option value="2">BPV</option>
+                                <select name="user_type" id="user_type" onchange="displayDivDemo('hideValuesOnSelect', this)">
+                                    <option value="#" {{ old('user_type') == "#" ? "selected" :""}}>Choose</option>
+                                    <option value="0" {{ old('user_type') == "0" ? "selected" :""}}>Education</option>
+                                    <option value="1" {{ old('user_type') == "1" ? "selected" :""}}>Student</option>
+                                    <option value="2" {{ old('user_type') == "2" ? "selected" :""}}>BPV</option>
                                 </select>
                             </div>
                         </div>
@@ -34,7 +34,19 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row" id="hideValuesOnSelect" style="display:none;">
+                            <label for="organization" class="col-md-4 col-form-label text-md-right">{{ __('Organization') }}</label>
+                            <div class="col-md-6">
+                                
+                                <input id="organization" type="text" class="form-control @error('organization') is-invalid @enderror" name="organization" value="{{ old('organization') }}" autocomplete="organization" autofocus>
 
+                                @error('organization')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -84,4 +96,9 @@
         </div>
     </div>
 </div>
+<script>
+    function displayDivDemo(id, elementValue) {
+      document.getElementById(id).style.display = elementValue.value == 2 ? '' : 'none';
+   }
+</script>
 @endsection

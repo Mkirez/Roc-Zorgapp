@@ -10,17 +10,28 @@
             <div>
                 <p>email: {{ $user->email }}</p>
             </div>
+
+            @if(auth()->user()->education() && $user->student())
             <div>
-                <p>orginization: {{ $user->organization }}</p>
+                <p>interns at: {{ $user->interns_at->pluck('organization')->first() }}</p>
             </div>
+            @endif
+
+            @if($user->bpv())
+            <div>
+                <p>organization: {{ $user->organization }}</p>
+            </div>
+            @endif
+
             @if(auth()->user() == $user)
             <div>
                 <p>password: ********</p>
             </div>
-            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#profile">
+            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#profileModal">
                 Edit
             </button>
             @endif
+
             @if(auth()->user()->student())
             <div>
                 <p>Intern at</p>
@@ -29,8 +40,10 @@
                     <select name="bpv">
                         <option value="#">Choose</option>
                         @foreach ($bpvs as $bpv)
+                        <option value="{{ $bpv->id }}" {{ ($user->interns_at->pluck('id')->first() == $bpv->id) ? 'selected' : '' }}>
+                            {{ $bpv->organization }}
+                        </option>
 
-                        <option value="{{ $bpv->id }}">{{ $bpv->name }}</option>
                         @endforeach
                     </select>
                     <button type="submit" class="btn btn-primary">Save</button>
@@ -39,9 +52,11 @@
             @endif
         </div>
     </div>
+
 </div>
 
-<div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="profileLabel" aria-hidden="true">
+
+<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -63,10 +78,12 @@
                         <label for="email">Email address</label>
                         <input type="email" name="email" class="form-control" id="email" value="{{ $user->email }}" required>
                     </div>
+                    @if(auth()->user()->bpv())
                     <div class="form-group ">
                         <label for="organization">Organization</label>
-                        <input type="text" name="organization" class="form-control" id="organization" placeholder="???" value="{{ $user->organization }}" required>
+                        <input type="text" name="organization" class="form-control" id="organization" value="{{ $user->organization }}" required>
                     </div>
+                    @endif
                     <div class="form-group ">
                         <label for="password">Password</label>
                         <input type="password" name="password" class="form-control" id="password" required>
@@ -84,35 +101,34 @@
 <br>
 @if(auth()->user()->education() && $user->student())
 <div class="container ">
-    <h5>Competitions</h5>
-    <ul class="list-group">
-        @foreach ($user->competitions() as $competition)
-
-            <li class="list-group-item" aria-current="true">{{ $competition->name }}</li>
-            <form method="POST" action="{{ route('approveCompetition', $competition->id) }}">
-                @csrf
-                @method('PATCH')
-                <button type="submit" class="btn btn-sm btn-outline-secondary">{{ $competition->achieved == 0 ? 'Approve' : 'Undo' }}</button>
-            </form>
-
-        @endforeach
-    </ul>
-    <br>
-    <h5>Logs</h5>
-    <ul class="list-group">
-        @foreach ($user->logs() as $log)
-        <li class="list-group-item" aria-current="true">
-            <p>{{ $log->description }}</p>
-            <p>{{ $log->hours }}</p>
-            <form method="POST" action="{{ route('approveLog', $log->id) }}">
-                @csrf
-                @method('PATCH')
-                <button type="submit" class="btn btn-sm btn-outline-secondary">{{ $log->confirmed == 0 ? 'Approve' : 'Undo' }}</button>
-            </form>
-        </li>
-
-        @endforeach
-    </ul>
+    <table class="table table-striped table-sm table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">File</th>
+                <th scope="col">Achieved</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($competitions as $competition)
+            <tr>
+                <th scope="row">{{ $competition->name }}</th>
+                <th scope="row"><a target="_blank" href="{{ $student_files->where('competition_id', $competition->id)->pluck('file')->first() }}">{{ basename($student_files->where('competition_id', $competition->id)->pluck('file')->first()) }}</a></th>
+                <th scope="row">{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'Not Yet' : 'Yes' }}</th>
+                <td>
+                    @if (count($competition->student_files()->where('user_id', $user->id)->get()) > 0)
+                    <form method="POST" action="{{ route('student_file.update', $student_files->where('competition_id', $competition->id)->pluck('id')->first()) }}">
+                        @csrf
+                        @method('PATCH')
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'Approve' : 'Undo' }}</button>
+                    </form>
+                    @endif
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 @endif
 @endsection

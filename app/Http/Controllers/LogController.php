@@ -23,6 +23,13 @@ class LogController extends Controller
         return back();
     }
 
+    public function update(Log $log)
+    {
+        $log->update($this->validateLog());
+
+        return back();
+    }
+
     public function destroy($id)
     {
         DB::update("DELETE FROM logs WHERE id=$id");

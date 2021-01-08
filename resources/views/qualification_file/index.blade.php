@@ -4,14 +4,14 @@
 @section('content')
 <div class="container">
     <div class="row">
-        @if(auth()->user()->education())
+        @if(auth()->user()->education() && $files->count() == 0)
         <div class="col-md-12 text-right">
             <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal">Add</button>
         </div>
         @endif
         @if($files->count() > 0 )
         <div class="col-md-12 text-left">
-            <h1>Qualification files</h1>
+            <h1>Qualification file</h1>
         </div>
         @foreach ($files as $file )
 
@@ -21,11 +21,9 @@
                     <h5 class="card-title">{{ $file->name }}</h5>
                     <p class="card-text">Schooljaar: #</p>
                     <div class="flex">
-                        @if(auth()->user()->student())
                         <a href="{{url('qualification_file')}}/{{$file->id}}" class="btn btn-sm btn-primary">View</a>
-                        @endif
                         @if(auth()->user()->education())
-                        <form method="post" action="{{url('qualification_file')}}/{{$file->id}}"> @csrf
+                        <form method="post" action="{{ url('qualification_file')}}/{{$file->id }}"> @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete {{ $file->name }}?')" data-toggle="confirmation">Remove</button>
                         </form>
@@ -37,7 +35,7 @@
         </div>
         @endforeach
         @else
-        <div>No qualification files yet.</div>
+        <div>No qualification file yet.</div>
         @endif
     </div>
 </div>
@@ -77,14 +75,6 @@
                                 <input type="file" accept=".pdf" name="file" class="form-control" id="file" required>
 
                                 @error('file')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="total_number_of_competitions">Total number of competitions</label>
-                                <input type="text" name="total_number_of_competitions" class="form-control" id="total_number_of_competitions" required>
-
-                                @error('total_number_of_competitions')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -130,14 +120,6 @@
                                 <input type="file" accept=".pdf" name="file" class="form-control" id="file" value="{{ $file->file }}">
 
                                 @error('file')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="total_number_of_competitions">Total number of competitions</label>
-                                <input type="text" name="total_number_of_competitions" class="form-control" id="total_number_of_competitions" value="{{ $file->total_number_of_competitions }}" required>
-
-                                @error('total_number_of_competitions')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>

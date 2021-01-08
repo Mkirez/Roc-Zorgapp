@@ -16,9 +16,6 @@ class CreateCompetitionsTable extends Migration
         Schema::create('competitions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('file');
-            $table->boolean('achieved');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('qualification_file_id')->constrained();
             $table->timestamps();
         });

@@ -515,6 +515,7 @@ class ComposerStaticInit0347fea2c8d11e44f88148f21143d00f
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\ApproveController' => __DIR__ . '/../..' . '/app/Http/Controllers/ApproveController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -524,6 +525,7 @@ class ComposerStaticInit0347fea2c8d11e44f88148f21143d00f
         'App\\Http\\Controllers\\CompetitionController' => __DIR__ . '/../..' . '/app/Http/Controllers/CompetitionController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\InternshipController' => __DIR__ . '/../..' . '/app/Http/Controllers/InternshipController.php',
         'App\\Http\\Controllers\\LogController' => __DIR__ . '/../..' . '/app/Http/Controllers/LogController.php',
         'App\\Http\\Controllers\\ProfilesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfilesController.php',
         'App\\Http\\Controllers\\Qualification_fileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Qualification_fileController.php',
@@ -540,6 +542,7 @@ class ComposerStaticInit0347fea2c8d11e44f88148f21143d00f
         'App\\Models\\Competition' => __DIR__ . '/../..' . '/app/Models/Competition.php',
         'App\\Models\\Log' => __DIR__ . '/../..' . '/app/Models/Log.php',
         'App\\Models\\Qualification_file' => __DIR__ . '/../..' . '/app/Models/Qualification_file.php',
+        'App\\Models\\Student_file' => __DIR__ . '/../..' . '/app/Models/Student_file.php',
         'App\\Models\\Studentgegevens' => __DIR__ . '/../..' . '/app/Models/Studentgegevens.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\studentinfo' => __DIR__ . '/../..' . '/app/Models/studentinfo.php',

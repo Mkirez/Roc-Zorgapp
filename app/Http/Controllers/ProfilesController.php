@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Qualification_file;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -14,22 +14,30 @@ class ProfilesController extends Controller
 {
     public function index()
     {
-        $students = User::where('user_type', 1)->get();
-
+        if (Auth::user()->education()) {
+            $students = User::where('user_type', 1)->get();
+            dd($students);
+        } elseif (Auth::user()->bpv()) {
+            $students = Auth::user()->interns;
+        }
         return view('profiles.index', compact('students'));
     }
 
     public function show(User $user)
     {
         $bpvs = DB::table('users')->where('user_type', 2)->get();
-        return view('profiles.show', compact('user', 'bpvs'));
+        $student_files = $user->student_files();
+        $competitions = Qualification_file::find(1)->competitions;
+        // dd($competitions);
+
+        return view('profiles.show', compact('user', 'bpvs', 'student_files', 'competitions'));
     }
 
     public function update(User $user)
     {
         $attributes = request()->validate([
             'name' => ['string', 'required', 'max:255'],
-            'organization' => ['string'],
+            'organization' => ['required_if:user_type,==,2'],
             'email' => ['string', 'required', 'email', Rule::unique('users')->ignore($user)],
             'password' => ['string', 'required', 'min:8', 'max:255', 'confirmed'],
             'user_type' => ['required'],
