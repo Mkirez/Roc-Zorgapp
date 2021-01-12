@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Competition;
+use App\Models\competition;
 use App\Models\Log;
 use App\Models\Student_file;
 

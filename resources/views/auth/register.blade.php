@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
@@ -13,7 +13,7 @@
                         <div class="form-group row">
                             <label for="user_type" class="col-md-4 col-form-label text-md-right">User Type</label>
                             <div class="col-md-6">
-                                <select name="user_type" id="user_type" onchange="displayDivDemo('hideValuesOnSelect', this)">
+                                <select class="mt-2" name="user_type" id="user_type" onchange="displayDivDemo('hideValuesOnSelect', this)">
                                     <option value="#" {{ old('user_type') == "#" ? "selected" :""}}>Choose</option>
                                     <option value="0" {{ old('user_type') == "0" ? "selected" :""}}>Education</option>
                                     <option value="1" {{ old('user_type') == "1" ? "selected" :""}}>Student</option>

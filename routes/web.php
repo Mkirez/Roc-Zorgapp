@@ -6,7 +6,7 @@ use App\http\Controllers\ProfilesController;
 use App\http\Controllers\InternshipController;
 use App\http\Controllers\LogController;
 use App\http\Controllers\Qualification_fileController;
-use App\http\Controllers\CompetitionController;
+use App\http\Controllers\competitionController;
 use App\http\Controllers\StudentFileController;
 
 Route::get('/', function () {
@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function () {
     
     Route::resource('qualification_file', Qualification_fileController::class);
 
-    Route::resource('competition', CompetitionController::class);
+    Route::resource('competition', competitionController::class);
     
     Route::resource('student_file', StudentFileController::class);
     

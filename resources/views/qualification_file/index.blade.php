@@ -100,30 +100,28 @@
                 </div>
                 <div class="modal-body">
                     <form class="form-group" method="POST" enctype="multipart/form-data" action="{{ route('qualification_file.update', $file->id ) }}">
-                    @csrf
-                    @method('PATCH')
-                        <div>
-                            <input type="text" hidden name="user_id" value="{{ Auth()->id() }}">
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" class="form-control" id="name" value="{{ $file->name }}" required>
+                        @csrf
+                        @method('PATCH')
 
-                                @error('name')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="file">File (.pdf only)</label>
-                                <div>
-                                <a target="_blank" href="{{ $file->file }}">{{ basename($file->file) }}</a>
-                                </div>
-                                <input type="file" accept=".pdf" name="file" class="form-control" id="file" value="{{ $file->file }}">
+                        <input type="text" hidden name="user_id" value="{{ Auth()->id() }}">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" class="form-control" id="name" value="{{ $file->name }}" required>
 
-                                @error('file')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="file">File (.pdf only)</label>
+                            <a target="_blank" href="{{ $file->file }}">{{ basename($file->file) }}</a>
+                            <input type="file" accept=".pdf" name="file" class="form-control" id="file" value="{{ $file->file }}">
+                        </div>
+
+                        @error('file')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                        <button type="submit" class="btn btn-primary float-right mt-3">Save</button>
                     </form>
                 </div>
             </div>

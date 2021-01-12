@@ -4,25 +4,29 @@
 @section('content')
 
 
-<div class="container">
+<div class="container mt-4">
     <!-- button -->
-    <div class="row">
-        <div class="col-md-12 text-right">
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#logModal">Add</button>
-        </div>
-        <div class="col-md-12 text-left">
+    <div class="row mb-5">
+        <div class="col-md-6 text-left">
             <h1>Log Hours</h1>
         </div>
+        @if(auth()->user()->interns_at()->exists())
+        <div class="col-md-6 text-right">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#logModal">Add</button>
+        </div>
+        @else
+        <div>To create a log: update 'interns at' on profile</div>
+        @endif
 
     </div>
 
 
-    <table class="table table-striped table-sm table-hover">
+    <table class="shadow table table-striped table-sm table-hover">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Description</th>
+                <th style="padding-left: 20px;" scope="col">Description</th>
                 <th scope="col">Hours</th>
+                <th scope="col">Company</th>
                 <th scope="col">Date</th>
                 <th scope="col">Confirmed</th>
                 <th scope="col">Actions</th>
@@ -31,18 +35,22 @@
         <tbody>
             @foreach ($logs as $log)
             <tr>
-                <th scope="row">{{$log->id}}</th>
-                <th scope="row">{{$log->description}}</th>
+                <th style="padding-left: 20px;" scope="row">{{$log->description}}</th>
                 <th scope="row">{{$log->hours}}</th>
-                <th scope="row">{{ date('d-m-Y', strtotime($log->date)) }}</th>
-                <th scope="row">{{ $log->confirmed == 0 ? 'Not yet' : 'Yes' }}</th>
+                <th scope="row">{{ App\Models\User::find($log->bpv_id)->organization }}</th>
+                <th scope="row">{{ date('d/m/Y', strtotime($log->date)) }}</th>
+                <th scope="row"><ion-icon style="cursor: default; color:{{ $log->confirmed == 0 ? 'inherit' : 'green' }};" name="{{ $log->confirmed == 0 ? 'square-outline' : 'checkbox-outline' }}"></ion-icon></th>
                 <td>
+                    <ion-icon id="edit" name="create-outline" data-toggle="modal" data-target="#modalTwo-{{ $log->id }}"></ion-icon>
+                    <!-- <button type="button" id="edit" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalTwo-{{ $log->id }}">Edit</button> -->
                     <form method="POST" action="{{ url('log')}}/{{$log->id }}">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-outline-secondary">Remove</button>
+                        <!-- <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this?')">Remove</button> -->
+                        <button style="	background: none; border: none; padding: 0; outline: inherit;">
+                            <ion-icon id="remove" name="close-outline" type="submit" onclick="return confirm('Are you sure you want to delete this?')" data-toggle="confirmation"></ion-icon>
+                        </button>
                     </form>
-                    <button type="button" id="edit" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalTwo-{{ $log->id }}" >Edit</button>
                 </td>
             </tr>
             @endforeach
@@ -64,6 +72,7 @@
                     @csrf
                     <input type="text" hidden name="user_id" value="{{ Auth()->id() }}">
                     <input type="text" hidden name="confirmed" value="0">
+                    <input type="text" hidden name="bpv_id" value="{{ Auth()->user()->interns_at()->pluck('id')->first() }}">
 
                     <div class="form-group">
                         <label for="description">Description</label>
@@ -90,7 +99,7 @@
                         @enderror
 
                     </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary float-right">Save</button>
                 </form>
             </div>
         </div>
@@ -112,6 +121,7 @@
                     @csrf
                     @method('PATCH')
                     <input type="text" hidden name="user_id" value="{{ Auth()->id() }}">
+                    <input type="text" hidden name="bpv_id" value="{{ $log->bpv_id }}">
                     <input type="text" hidden name="confirmed" value="0">
 
                     <div class="form-group">
@@ -147,11 +157,11 @@
 </div>
 @endforeach
 @if (count($errors) > 0)
-    <script>
-        $( document ).ready(function() {
-            $('#logModal').modal('show');
-        });
-    </script>
+<script>
+    $(document).ready(function() {
+        $('#logModal').modal('show');
+    });
+</script>
 @endif
 
 @endsection

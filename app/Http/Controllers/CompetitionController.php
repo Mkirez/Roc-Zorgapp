@@ -3,28 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Qualification_file;
-use App\Models\Competition;
+use App\Models\competition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class CompetitionController extends Controller
+class competitionController extends Controller
 {
     public function store(Request $request)
     {
-        Competition::create($this->validateCompetition());
+        competition::create($this->validatecompetition());
 
         return back();
     }
 
-    public function update(Request $request, Competition $competition)
+    public function update(Request $request, competition $competition)
     {
-        $competition->update($this->validateCompetition());
+        $competition->update($this->validatecompetition());
 
         return back();
     }
 
-    public function index(Request $request, Competition $competition)
+    public function index(Request $request, competition $competition)
     {
         $competitions = Auth::user()->competitions();
         $qualification_files = Qualification_file::all();
@@ -32,7 +32,7 @@ class CompetitionController extends Controller
         return view('competitions', compact('qualification_files', 'competitions'));
     }
 
-    public function approveCompetition(Competition $competition)
+    public function approvecompetition(competition $competition)
     {
         if ($competition->achieved == 0) {
             $competition->update(['achieved' => 1]);
@@ -54,7 +54,7 @@ class CompetitionController extends Controller
 
     
 
-    protected function validateCompetition()
+    protected function validatecompetition()
     {
         $attributes = request()->validate([
             'name' => 'required',

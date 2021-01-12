@@ -1,25 +1,25 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container">
+<div class="container mt-4">
     <div class="row">
         <div class="col-4">
             <div>
-                <p>name: {{ $user->name }}</p>
+                <p>Name: {{ $user->name }}</p>
             </div>
             <div>
-                <p>email: {{ $user->email }}</p>
+                <p>E-mail: {{ $user->email }}</p>
             </div>
 
             @if(auth()->user()->education() && $user->student())
             <div>
-                <p>interns at: {{ $user->interns_at->pluck('organization')->first() }}</p>
+                <p>Interns at: {{ $user->interns_at->pluck('organization')->first() }}</p>
             </div>
             @endif
 
             @if($user->bpv())
             <div>
-                <p>organization: {{ $user->organization }}</p>
+                <p>Organization: {{ $user->organization }}</p>
             </div>
             @endif
 
@@ -37,8 +37,8 @@
                 <p>Intern at</p>
                 <form method="POST" action="intern">
                     @csrf
-                    <select name="bpv">
-                        <option value="#">Choose</option>
+                    <select name="bpv" required>
+                        <option value="">Choose</option>
                         @foreach ($bpvs as $bpv)
                         <option value="{{ $bpv->id }}" {{ ($user->interns_at->pluck('id')->first() == $bpv->id) ? 'selected' : '' }}>
                             {{ $bpv->organization }}
@@ -46,13 +46,12 @@
 
                         @endforeach
                     </select>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-sm btn-primary">{{ $user->interns_at()->exists() ? 'Delete' : 'Save' }}</button>
                 </form>
             </div>
             @endif
         </div>
     </div>
-
 </div>
 
 
@@ -92,7 +91,7 @@
                         <label for="password_confirmation">Password Confirmation</label>
                         <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary float-right">Save</button>
                 </form>
             </div>
         </div>
@@ -101,27 +100,32 @@
 <br>
 @if(auth()->user()->education() && $user->student())
 <div class="container ">
-    <table class="table table-striped table-sm table-hover">
+    <table class="shadow table table-striped table-sm table-hover">
         <thead>
             <tr>
-                <th scope="col">Name</th>
+                <th style="padding-left: 20px;" scope="col">Name</th>
                 <th scope="col">File</th>
-                <th scope="col">Achieved</th>
+                <!-- <th scope="col">Achieved</th> -->
                 <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($competitions as $competition)
             <tr>
-                <th scope="row">{{ $competition->name }}</th>
+                <th style="padding-left: 20px;" scope="row">{{ $competition->name }}</th>
                 <th scope="row"><a target="_blank" href="{{ $student_files->where('competition_id', $competition->id)->pluck('file')->first() }}">{{ basename($student_files->where('competition_id', $competition->id)->pluck('file')->first()) }}</a></th>
-                <th scope="row">{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'Not Yet' : 'Yes' }}</th>
+                <!-- <th scope="row">{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'Not Yet' : 'Yes' }}</th> -->
                 <td>
                     @if (count($competition->student_files()->where('user_id', $user->id)->get()) > 0)
                     <form method="POST" action="{{ route('student_file.update', $student_files->where('competition_id', $competition->id)->pluck('id')->first()) }}">
                         @csrf
                         @method('PATCH')
-                        <button type="submit" class="btn btn-sm btn-outline-secondary">{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'Approve' : 'Undo' }}</button>
+                        <button type="submit" style="background: none; border: none; padding: 0; outline: inherit; line-height: 0px;">
+                            <ion-icon id="toggle" style="color:{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'inherit' : 'green' }};" name="{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'square-outline' : 'checkbox-outline' }}"></ion-icon>
+                        </button>
+
+                        <!-- <button type="submit">{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'Approve' : 'Undo' }}</button> -->
+                        <!-- <button type="submit" class="btn btn-sm btn-outline-secondary">{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'Approve' : 'Undo' }}</button> -->
                     </form>
                     @endif
                 </td>
@@ -129,6 +133,72 @@
             @endforeach
         </tbody>
     </table>
+
 </div>
 @endif
+
+@if($logs->count() > 0)
+<div class="container ">
+    <table class="shadow table table-striped table-sm table-hover">
+        <thead>
+            <tr>
+                <th style="padding-left: 20px;" scope="col">Description</th>
+                <th scope="col">Hours</th>
+                <th scope="col">Date</th>
+                <!-- <th scope="col">Confirmed</th> -->
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($logs as $log)
+            <tr>
+                <th style="padding-left: 20px;" scope="row">{{$log->description}}</th>
+                <th scope="row">{{$log->hours}}</th>
+                <th scope="row">{{ date('d/m/Y', strtotime($log->date)) }}</th>
+                <!-- <th scope="row">{{ $log->confirmed == 0 ? 'Not yet' : 'Yes' }}</th> -->
+                <td>
+                    <form method="POST" action="{{ route('approveLog', $log->id) }}">
+                        @csrf
+                        @method('PATCH')
+                        <button style="	background: none; border: none; padding: 0; outline: inherit;" type="submit">
+                            <ion-icon id="toggle" style="color:{{ $log->confirmed == 0 ? 'inherit' : 'green' }};" name="{{ $log->confirmed == 0 ? 'square-outline' : 'checkbox-outline' }}"></ion-icon>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+</div>
+@endif
+<script>
+    $(document).ready(function() {
+        // $("#toggle").hover(
+        //     function() {
+        //         $(this).attr("name", "checkbox-outline");
+        //     },
+        //     function() {
+        //         $(this).attr("name", "square-outline");
+        //     }
+        // );
+        // $("#toggle").hover(
+        //     function() {
+        //         $(this).attr("name", "square-outline");
+        //     },
+        //     function() {
+        //         $(this).attr("name", "checkbox-outline");
+        //     }
+        // );
+        //     $('#toggle').click(function() {
+        //         if ($(this).attr('name') === 'square-outline') {
+        //             // alert($(this).attr("name"));
+        //             $(this).attr("name", "checkbox-outline");
+        //         } else {
+        //             $(this).attr('name', 'square-outline');
+        //         }
+        //     });
+
+    });
+</script>
 @endsection

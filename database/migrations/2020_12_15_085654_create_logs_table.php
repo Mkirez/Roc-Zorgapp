@@ -20,6 +20,7 @@ class CreateLogsTable extends Migration
             $table->date('date');
             $table->boolean('confirmed');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('bpv_id')->constrained('users');
             $table->timestamps();
         });
     }

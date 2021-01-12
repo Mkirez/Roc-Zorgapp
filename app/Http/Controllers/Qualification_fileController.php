@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Qualification_file;
 use App\Models\File;
-use App\Models\Competition;
+use App\Models\competition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -13,13 +13,13 @@ class Qualification_fileController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->student()) {
+        // if (Auth::user()->student()) {
             $files = Qualification_file::all(); // student sees all qualification_files
 
-        } else {
+        // } else {
 
-            $files = Auth::user()->qualification_files(); // education sees only his/hers qualification files
-        }
+        //     $files = Auth::user()->qualification_files(); // education sees only his/hers qualification files
+        // }
 
         return view('qualification_file.index', compact('files'));
     }
@@ -33,7 +33,7 @@ class Qualification_fileController extends Controller
 
     public function show(Qualification_file $qualification_file)
     {
-        $competitions = $qualification_file->competitions;
+        $competitions = $qualification_file->competitions->sortBy('name');
         $student_files = auth()->user()->student_files();
 
         return view('qualification_file.show', compact('qualification_file', 'competitions', 'student_files')); 

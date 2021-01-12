@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Log;
 use App\Models\Qualification_file;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,7 @@ class ProfilesController extends Controller
     {
         if (Auth::user()->education()) {
             $students = User::where('user_type', 1)->get();
-            dd($students);
+            // dd($students);
         } elseif (Auth::user()->bpv()) {
             $students = Auth::user()->interns;
         }
@@ -27,10 +28,14 @@ class ProfilesController extends Controller
     {
         $bpvs = DB::table('users')->where('user_type', 2)->get();
         $student_files = $user->student_files();
-        $competitions = Qualification_file::find(1)->competitions;
-        // dd($competitions);
+        if (Qualification_file::all()->count() > 0){
+            $competitions = Qualification_file::find(1)->competitions;
+        } else {
+            $competitions = [];
+        }
+        $logs = collect($user->logs()->where('bpv_id', Auth::user()->id));
 
-        return view('profiles.show', compact('user', 'bpvs', 'student_files', 'competitions'));
+        return view('profiles.show', compact('user', 'bpvs', 'student_files', 'competitions', 'logs'));
     }
 
     public function update(User $user)

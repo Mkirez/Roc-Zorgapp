@@ -8,12 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>ROC app</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,8 +22,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+
+    <!-- <link rel="stylesheet" href="custom.css"> -->
 </head>
 
 <body>
@@ -64,16 +68,25 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
+                            @if(!App\Models\Qualification_file::find(1)->exists())
                                 @if(!auth()->user()->bpv())
                                 <a class="dropdown-item" id="dropdown-link" href="{{ url('qualification_file') }}">
                                     @if(auth()->user()->education())
                                         Qualification file
                                     @else
-                                        Competitions
+                                        competitions
                                     @endif
                                 </a>
                                 @endif
+                            @else
+                            <a class="dropdown-item" id="dropdown-link" href="{{ url('qualification_file/1') }}">
+                                    @if(auth()->user()->education())
+                                        Qualification file
+                                    @else
+                                        competitions
+                                    @endif
+                                </a>
+                            @endif
 
                                 @if(auth()->user()->student())
                                 <a class="dropdown-item" id="dropdown-link" href="{{ url('log') }}">

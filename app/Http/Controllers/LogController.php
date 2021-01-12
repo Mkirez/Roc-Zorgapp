@@ -55,6 +55,7 @@ class LogController extends Controller
             'hours' => 'required|integer',
             'date' => 'required',
             'user_id' => 'required',
+            'bpv_id' => 'required',
             'confirmed' => 'required',
         ]);
     }

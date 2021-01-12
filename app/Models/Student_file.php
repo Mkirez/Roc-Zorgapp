@@ -18,7 +18,7 @@ class Student_file extends Model
 
     public function competition()
     {
-        return $this->belongsTo(Competition::class);
+        return $this->belongsTo(competition::class);
     }
 
     public function getFileAttribute($value)

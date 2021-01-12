@@ -49886,8 +49886,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/mertkirez/Documents/Code/rocapp/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/mertkirez/Documents/Code/rocapp/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/diamemorreau/code/2020_ADSD_Project_FrameWorks_TeamC1/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/diamemorreau/code/2020_ADSD_Project_FrameWorks_TeamC1/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

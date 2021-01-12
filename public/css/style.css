@@ -1,0 +1,140 @@
+body {
+    background-color: #f5f5f5;
+    /* font-family: 'Open Sans', sans-serif; */
+}
+
+.card {
+    border-radius: 20px;
+}
+
+.card-header {
+    background-color: transparent;
+}
+
+.table a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.table a:hover {
+    color: #0031ff;
+    text-decoration: underline;
+}
+
+.btn.focus,
+.btn:focus,
+.btn:active {
+    outline: 0;
+    box-shadow: none;
+}
+
+.form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.bg-white {
+    color: #f5f5f5;
+}
+
+ion-icon {
+    font-size: 24px;
+}
+
+ion-icon:hover {
+    cursor: pointer;
+}
+
+::-webkit-file-upload-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+tr {
+    border-top: hidden;
+}
+
+#remove:hover {
+    color: red;
+}
+
+#edit:hover {
+    color: #0031ff;
+}
+
+#edit:focus {
+    color: #0031ff;
+}
+
+#toggle:hover {
+    color: #0031ff !important;
+}
+
+.btn-sm,
+.btn-group-sm > .btn {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.7875rem;
+    line-height: 1.5;
+    border-radius: 1rem;
+}
+
+.btn,
+.btn-group- > .btn {
+    /* padding: 0.3rem 0.8rem; */
+    font-size: 0.7875rem;
+    /* line-height: 1.5; */
+    border-radius: 2rem;
+}
+
+form {
+    display: inline;
+    /* line-height: 0px; */
+}
+
+.form-control {
+    border-radius: 12px;
+}
+
+table {
+    /* border-collapse: separate; */
+    border-radius: 12px;
+}
+
+tr:last-child td:last-child {
+    /* background-color: red; */
+    border-bottom-right-radius: 12px;
+}
+
+.table tr:last-child th:first-child {
+    border-bottom-left-radius: 12px;
+    /* background-color: red; */
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #0031ff;
+    border-color: #0031ff;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0027cc;
+    border-color: #0027cc;
+}
+
+.btn-primary:focus {
+    color: #fff;
+    background-color: #0027cc;
+    border-color: #0027cc;
+}
+
+.table-striped tbody {
+    background-color: #f5f5f5;
+}
+
+.modal-content {
+    border-radius: 20px;
+    border: none;
+}

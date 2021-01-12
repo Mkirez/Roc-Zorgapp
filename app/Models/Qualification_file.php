@@ -18,7 +18,12 @@ class Qualification_file extends Model
 
     public function competitions()
     {
-        return $this->hasMany(Competition::class);
+        return $this->hasMany(competition::class);
+    }
+
+    public function competitions_count()
+    {
+        return count($this->competitions);
     }
 
     public function getFileAttribute($value)

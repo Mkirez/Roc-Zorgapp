@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -30,7 +31,21 @@ class User extends Authenticatable
 
     public function intern(User $user)
     {
-        return $this->interns_at()->save($user);
+        if ($this->interns_at()->exists()) {
+            if ($this->interns_at->contains($user->id)) {
+                DB::table('interns_at')->where('user_id', $this->id)->delete();
+            } else {
+                DB::table('interns_at')->where('user_id', $this->id)->delete();
+                return $this->interns_at()->save($user);
+            }
+        } else {
+            return $this->interns_at()->save($user);
+        }
+    }
+
+    public function achieved_student_files()
+    {
+        return count($this->student_files()->where('achieved', 1));
     }
 
     // -------------------------- Relationships --------------------------
@@ -42,7 +57,7 @@ class User extends Authenticatable
 
     public function competitions()
     {
-        return $this->hasMany(Competition::class)->latest()->get();
+        return $this->hasMany(competition::class)->latest()->get();
     }
 
     public function qualification_files()
