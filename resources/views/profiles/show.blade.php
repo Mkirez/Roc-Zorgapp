@@ -173,7 +173,7 @@
 </div>
 @endif
 <script>
-    $(document).ready(function() {
+    // $(document).ready(function() {
         // $("#toggle").hover(
         //     function() {
         //         $(this).attr("name", "checkbox-outline");
@@ -199,6 +199,6 @@
         //         }
         //     });
 
-    });
+    // });
 </script>
 @endsection
