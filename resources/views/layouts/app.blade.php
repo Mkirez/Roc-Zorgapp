@@ -68,7 +68,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            @if(!App\Models\Qualification_file::find(1)->exists())
+                            @if(!App\Models\Qualification_file::all()->count() > 0)
                                 @if(!auth()->user()->bpv())
                                 <a class="dropdown-item" id="dropdown-link" href="{{ url('qualification_file') }}">
                                     @if(auth()->user()->education())

@@ -3,6 +3,10 @@ body {
     /* font-family: 'Open Sans', sans-serif; */
 }
 
+/* .icon-inner, .ionicon, svg {
+    color: red;
+} */
+
 .card {
     border-radius: 20px;
 }
