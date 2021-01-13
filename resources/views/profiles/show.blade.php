@@ -120,8 +120,8 @@
                     <form method="POST" action="{{ route('student_file.update', $student_files->where('competition_id', $competition->id)->pluck('id')->first()) }}">
                         @csrf
                         @method('PATCH')
-                        <button type="submit" style="background: none; border: none; padding: 0; outline: inherit; line-height: 0px;">
-                            <ion-icon id="toggle" style="color:{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'inherit' : 'green' }};" name="{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'square-outline' : 'checkbox-outline' }}"></ion-icon>
+                        <button title="{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'Approve' : 'Undo' }}" id="toggle" type="submit" style="color:{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'inherit' : 'green' }}; background: none; border: none; padding: 0; outline: inherit; line-height: 0px;">
+                            <ion-icon name="{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'square-outline' : 'checkbox-outline' }}"></ion-icon>
                         </button>
 
                         <!-- <button type="submit">{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'Approve' : 'Undo' }}</button> -->
@@ -160,8 +160,8 @@
                     <form method="POST" action="{{ route('approveLog', $log->id) }}">
                         @csrf
                         @method('PATCH')
-                        <button style="	background: none; border: none; padding: 0; outline: inherit;" type="submit">
-                            <ion-icon id="toggle" style="color:{{ $log->confirmed == 0 ? 'inherit' : 'green' }};" name="{{ $log->confirmed == 0 ? 'square-outline' : 'checkbox-outline' }}"></ion-icon>
+                        <button title="{{ $log->confirmed == 0 ? 'Approve' : 'Undo' }}" id="toggle" style="color:{{ $log->confirmed == 0 ? 'inherit' : 'green' }}; background: none; border: none; padding: 0; outline: inherit;" type="submit">
+                            <ion-icon name="{{ $log->confirmed == 0 ? 'square-outline' : 'checkbox-outline' }}"></ion-icon>
                         </button>
                     </form>
                 </td>

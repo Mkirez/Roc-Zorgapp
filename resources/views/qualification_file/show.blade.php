@@ -6,13 +6,13 @@
     <div class="row mb-5">
         <div class="col-md-6 float-left">
             <h1>Competitions - {{ $qualification_file->name }}</h1>
-            <a id="edit" target="_blank" href="{{ $qualification_file->file }}">
+            <a title="Show qualification file" id="edit" target="_blank" href="{{ $qualification_file->file }}" style="background: none; border: none; padding: 0; outline: inherit;">
                 <ion-icon name="reader-outline"></ion-icon>
             </a>
             @if(auth()->user()->education())
-            <a id="edit" data-toggle="modal" data-target="#modalEdit">
+            <button id="edit" title="Edit" data-toggle="modal" data-target="#modalEdit" style="background: none; border: none; padding: 0; outline: inherit;">
                 <ion-icon name="create-outline"></ion-icon>
-            </a>
+            </button>
             @endif
         </div>
 
@@ -58,24 +58,28 @@
                     @if(!auth()->user()->bpv())
 
                     @if(auth()->user()->education())
-                    <ion-icon id="edit" name="create-outline" data-toggle="modal" data-target="#modalTwo-{{ $competition->id }}"></ion-icon>
+                    <button title="Edit" id="edit" data-toggle="modal" data-target="#modalTwo-{{ $competition->id }}" style="background: none; border: none; padding: 0; outline: inherit;">
+                        <ion-icon name="create-outline"></ion-icon>
+                    </button>
                     <!-- <button type="button" id="edit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalTwo-{{ $competition->id }}">Edit</button> -->
                     <form method="POST" action="{{ url('competition') }}/{{ $competition->id }}"> @csrf
                         @method('DELETE')
                         <!-- <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this?')" data-toggle="confirmation">Remove</button> -->
-                        <button style="	background: none; border: none; padding: 0; outline: inherit;">
-                            <ion-icon id="remove" name="close-outline" type="submit" onclick="return confirm('Are you sure you want to delete this?')" data-toggle="confirmation"></ion-icon>
+                        <button title="Remove" id="remove" type="submit" onclick="return confirm('Are you sure you want to delete this?')" data-toggle="confirmation" style="	background: none; border: none; padding: 0; outline: inherit;">
+                            <ion-icon name="close-outline" ></ion-icon>
                         </button>
                     </form>
                     @else
-                    <ion-icon id="edit" name="add-outline" data-toggle="modal" data-target="#modalAddFile-{{ $competition->id }}"></ion-icon>
+                    <button title="New/edit" id="edit" data-toggle="modal" data-target="#modalAddFile-{{ $competition->id }}" style="background: none; border: none; padding: 0; outline: inherit;">
+                        <ion-icon name="add-outline"></ion-icon>
+                    </button>
                     <!-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalAddFile-{{ $competition->id }}">Add file</button> -->
                     @if (count($competition->student_files()->where('user_id', auth()->id())->get()) > 0)
                     <form method="POST" action="{{ url('student_file') }}/{{ $student_files->where('competition_id', $competition->id)->pluck('id')->first() }}"> @csrf
                         @method('DELETE')
                         <!-- <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this?')" data-toggle="confirmation">Remove</button> -->
-                        <button style="	background: none; border: none; padding: 0; outline: inherit;">
-                            <ion-icon id="remove" name="close-outline" type="submit" onclick="return confirm('Are you sure you want to delete this?')" data-toggle="confirmation"></ion-icon>
+                        <button title="Remove" id="remove" type="submit" onclick="return confirm('Are you sure you want to delete this?')" data-toggle="confirmation" style="background: none; border: none; padding: 0; outline: inherit;">
+                            <ion-icon  name="close-outline" ></ion-icon>
                         </button>
                     </form>
                     @endif
@@ -196,44 +200,44 @@
 @endforeach
 
 <div>
-<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit qualification file: {{ $qualification_file->name }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form class="form-group" method="POST" enctype="multipart/form-data" action="{{ route('qualification_file.update', $qualification_file->id ) }}">
-                    @csrf
-                    @method('PATCH')
+    <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit qualification file: {{ $qualification_file->name }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group" method="POST" enctype="multipart/form-data" action="{{ route('qualification_file.update', $qualification_file->id ) }}">
+                        @csrf
+                        @method('PATCH')
 
-                    <input type="text" hidden name="user_id" value="{{ $qualification_file->user_id }}">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" class="form-control" id="name" value="{{ $qualification_file->name }}" required>
+                        <input type="text" hidden name="user_id" value="{{ $qualification_file->user_id }}">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" class="form-control" id="name" value="{{ $qualification_file->name }}" required>
 
-                        @error('name')
+                            @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="file">File (.pdf only)</label>
+                            <a target="_blank" href="{{ $qualification_file->file }}">{{ basename($qualification_file->file) }}</a>
+                            <input type="file" accept=".pdf" name="file" class="form-control" id="file" value="{{ $qualification_file->file }}">
+                        </div>
+
+                        @error('file')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="file">File (.pdf only)</label>
-                        <a target="_blank" href="{{ $qualification_file->file }}">{{ basename($qualification_file->file) }}</a>
-                        <input type="file" accept=".pdf" name="file" class="form-control" id="file" value="{{ $qualification_file->file }}">
-                    </div>
-
-                    @error('file')
-                    <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                    <button type="submit" class="btn btn-primary float-right mt-3">Save</button>
-                </form>
+                        <button type="submit" class="btn btn-primary float-right mt-3">Save</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 </script>

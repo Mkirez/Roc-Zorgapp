@@ -13,8 +13,8 @@
                         <div class="form-group row">
                             <label for="user_type" class="col-md-4 col-form-label text-md-right">User Type</label>
                             <div class="col-md-6">
-                                <select class="mt-2" name="user_type" id="user_type" onchange="displayDivDemo('hideValuesOnSelect', this)">
-                                    <option value="#" {{ old('user_type') == "#" ? "selected" :""}}>Choose</option>
+                                <select class="mt-2" name="user_type" id="user_type" onchange="displayDivDemo('hideValuesOnSelect', this)" required>
+                                    <option value="" {{ old('user_type') == "" ? "selected" :""}}>Choose</option>
                                     <option value="0" {{ old('user_type') == "0" ? "selected" :""}}>Education</option>
                                     <option value="1" {{ old('user_type') == "1" ? "selected" :""}}>Student</option>
                                     <option value="2" {{ old('user_type') == "2" ? "selected" :""}}>BPV</option>

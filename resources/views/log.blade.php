@@ -39,16 +39,20 @@
                 <th scope="row">{{$log->hours}}</th>
                 <th scope="row">{{ App\Models\User::find($log->bpv_id)->organization }}</th>
                 <th scope="row">{{ date('d/m/Y', strtotime($log->date)) }}</th>
-                <th scope="row"><ion-icon style="cursor: default; color:{{ $log->confirmed == 0 ? 'inherit' : 'green' }};" name="{{ $log->confirmed == 0 ? 'square-outline' : 'checkbox-outline' }}"></ion-icon></th>
+                <th scope="row">
+                    <ion-icon style="cursor: default; color:{{ $log->confirmed == 0 ? 'inherit' : 'green' }};" name="{{ $log->confirmed == 0 ? 'square-outline' : 'checkbox-outline' }}"></ion-icon>
+                </th>
                 <td>
-                    <ion-icon id="edit" name="create-outline" data-toggle="modal" data-target="#modalTwo-{{ $log->id }}"></ion-icon>
+                <button title="Edit" id="edit" type="submit" data-toggle="modal" data-target="#modalTwo-{{ $log->id }}" style="background: none; border: none; padding: 0; outline: inherit;">
+                    <ion-icon name="create-outline" ></ion-icon>
+                </button>
                     <!-- <button type="button" id="edit" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalTwo-{{ $log->id }}">Edit</button> -->
                     <form method="POST" action="{{ url('log')}}/{{$log->id }}">
                         @csrf
                         @method('DELETE')
                         <!-- <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this?')">Remove</button> -->
-                        <button style="	background: none; border: none; padding: 0; outline: inherit;">
-                            <ion-icon id="remove" name="close-outline" type="submit" onclick="return confirm('Are you sure you want to delete this?')" data-toggle="confirmation"></ion-icon>
+                        <button title="Remove" id="remove" type="submit" onclick="return confirm('Are you sure you want to delete this?')" data-toggle="confirmation" style="background: none; border: none; padding: 0; outline: inherit;">
+                            <ion-icon name="close-outline"></ion-icon>
                         </button>
                     </form>
                 </td>

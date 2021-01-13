@@ -7,6 +7,10 @@ body {
     color: red;
 } */
 
+ion-icon {
+    pointer-events: none;
+  }
+
 .card {
     border-radius: 20px;
 }

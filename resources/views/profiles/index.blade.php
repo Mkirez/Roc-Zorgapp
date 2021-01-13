@@ -37,8 +37,8 @@
                 <th scope="row">{{ $student->logs()->sum('hours') }}</th>
                 <th scope="row">{{ date('d/m/Y', strtotime($student->created_at)) }}</th>
                 <td>
-                    <a href="{{ route('profile', $student->id) }}">
-                        <ion-icon id="edit" name="open-outline"></ion-icon>
+                    <a title="Show profile" id="edit" href="{{ route('profile', $student->id) }}">
+                        <ion-icon name="open-outline"></ion-icon>
                     </a>
 
                     <!-- <a href="{{ route('profile', $student->id) }}">view</a> -->
