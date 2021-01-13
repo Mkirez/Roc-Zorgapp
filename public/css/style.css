@@ -11,6 +11,12 @@ body {
     background-color: transparent;
 }
 
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color:#0031ff;
+}
+
 .table a {
     color: inherit;
     text-decoration: underline;
@@ -35,7 +41,7 @@ body {
 }
 
 .bg-white {
-    color: #f5f5f5;
+    /* background-color: #545863 !important; */
 }
 
 ion-icon {

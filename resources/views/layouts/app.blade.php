@@ -74,7 +74,7 @@
                                     @if(auth()->user()->education())
                                         Qualification file
                                     @else
-                                        competitions
+                                        Competitions
                                     @endif
                                 </a>
                                 @endif
@@ -83,7 +83,7 @@
                                     @if(auth()->user()->education())
                                         Qualification file
                                     @else
-                                        competitions
+                                        Competitions
                                     @endif
                                 </a>
                             @endif

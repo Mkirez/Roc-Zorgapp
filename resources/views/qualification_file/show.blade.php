@@ -5,7 +5,7 @@
 <div class="container mt-4">
     <div class="row mb-5">
         <div class="col-md-6 float-left">
-            <h1>competitions - {{ $qualification_file->name }}</h1>
+            <h1>Competitions - {{ $qualification_file->name }}</h1>
         </div>
         @if(auth()->user()->education())
         <div class="col-md-6 text-right">
@@ -42,12 +42,12 @@
                 <th scope="row"><a target="_blank" href="{{ $student_files->where('competition_id', $competition->id)->pluck('file')->first() }}">{{ basename($student_files->where('competition_id', $competition->id)->pluck('file')->first()) }}</a></th>
                 <!-- <th scope="row" style="{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'background-color: red;' : 'background-color: green;' }}"></th> -->
                 <th scope="row">
-                    <ion-icon style="color:{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'inherit' : 'green' }};" name="{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'square-outline' : 'checkbox-outline' }}"></ion-icon>
+                    <ion-icon style="cursor: default; color:{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'inherit' : 'green' }};" name="{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'square-outline' : 'checkbox-outline' }}"></ion-icon>
                 </th>
                 @endif
                 <td>
                     @if(!auth()->user()->bpv())
-                    
+
                     @if(auth()->user()->education())
                     <ion-icon id="edit" name="create-outline" data-toggle="modal" data-target="#modalTwo-{{ $competition->id }}"></ion-icon>
                     <!-- <button type="button" id="edit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalTwo-{{ $competition->id }}">Edit</button> -->

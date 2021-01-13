@@ -25,7 +25,7 @@
 
             @if(auth()->user() == $user)
             <div>
-                <p>password: ********</p>
+                <p>Password: ********</p>
             </div>
             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#profileModal">
                 Edit
@@ -33,7 +33,7 @@
             @endif
 
             @if(auth()->user()->student())
-            <div>
+            <div class="mt-5">
                 <p>Intern at</p>
                 <form method="POST" action="intern">
                     @csrf
@@ -46,7 +46,7 @@
 
                         @endforeach
                     </select>
-                    <button type="submit" class="btn btn-sm btn-primary">{{ $user->interns_at()->exists() ? 'Delete' : 'Save' }}</button>
+                    <button type="submit" class="btn btn-sm btn-primary ml-2">Change</button>
                 </form>
             </div>
             @endif
