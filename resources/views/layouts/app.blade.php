@@ -193,13 +193,20 @@
         <nav class=" navbar-expand-md navbar-light  shadow-sm uppernav" style="background-color:#F07310;">
             <div class="container">
                 <div class=" justify-content-center">
-                    <div class="col-md-12 text-center no-padding">
+                    <div class="col-md-12  no-padding">
                         <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ asset('images/logo.png') }} " style="width: 66%;     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));">
+                        <img src="{{ asset('images/logo.png') }} " style="width: 37%;     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); margin-right: 7rem;">
                         </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
 
-                        <div class=" navbar-collapse justify-content-center" id="navbarSupportedContent">
+                        
+
+
+
+                        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
 
                         <ul class="navbar-ul">
