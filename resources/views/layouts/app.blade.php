@@ -29,99 +29,105 @@
     <!-- <link rel="stylesheet" href="custom.css"> -->
 </head>
 
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<body >
+    <div id="app" >
+        <nav class=" navbar-expand-md navbar-light  shadow-sm sidenav" style="background-color:#F07310;">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    ROC APP
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <div class="row justify-content-center">
+                    <div class="col-md-12 text-center">
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                        <img src="{{ asset('images/logo.png') }} " style="width: 66%;     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Left Side Of Navbar -->
 
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                        @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @endif
-
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                        @endif
-                        @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ auth()->user()->name }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            @if(!App\Models\Qualification_file::all()->count() > 0)
-                                @if(!auth()->user()->bpv())
-                                <a class="dropdown-item" id="dropdown-link" href="{{ url('qualification_file') }}">
-                                    @if(auth()->user()->education())
-                                        Qualification file
-                                    @else
-                                        Competitions
-                                    @endif
-                                </a>
+                        <ul>
+                            @guest
+                                @if (Route::has('login'))
+                                    <li class="links">
+                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    </li>
                                 @endif
-                            @else
-                            <a class="dropdown-item" id="dropdown-link" href="{{ url('qualification_file/1') }}">
-                                    @if(auth()->user()->education())
-                                        Qualification file
-                                    @else
-                                        Competitions
-                                    @endif
-                                </a>
-                            @endif
-
-                                @if(auth()->user()->student())
-                                <a class="dropdown-item" id="dropdown-link" href="{{ url('log') }}">
-                                    Log hours
-                                </a>
+                                 @if (Route::has('register'))
+                                    <li class="links">
+                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    </li>
                                 @endif
+                                @else
+                                    <li class="links dropdown">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            {{ auth()->user()->name }}
+                                        </a>
 
-                                @if(auth()->user()->education() || auth()->user()->bpv())
-                                <a class="dropdown-item" id="dropdown-link" href="{{ url('profiles') }}">
-                                    Students
-                                </a>
-                                @endif
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        @if(!App\Models\Qualification_file::all()->count() > 0)
+                                            @if(!auth()->user()->bpv())
+                                            <a class="dropdown-item" id="dropdown-link" href="{{ url('qualification_file') }}">
+                                                @if(auth()->user()->education())
+                                                    Qualification file
+                                                @else
+                                                    Competitions
+                                                @endif
+                                            </a>
+                                            @endif
+                                        @else
+                                        <a class="dropdown-item" id="dropdown-link" href="{{ url('qualification_file/1') }}">
+                                                @if(auth()->user()->education())
+                                                    Qualification file
+                                                @else
+                                                    Competitions
+                                                @endif
+                                            </a>
+                                        @endif
 
-                                <a class="dropdown-item" id="dropdown-link" href="{{ route('profile', Auth::user()) }}">
-                                    Profile
-                                </a>
+                                            @if(auth()->user()->student())
+                                            <a class="dropdown-item" id="dropdown-link" href="{{ url('log') }}">
+                                                Log hours
+                                            </a>
+                                            @endif
 
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                                            @if(auth()->user()->education() || auth()->user()->bpv())
+                                            <a class="dropdown-item" id="dropdown-link" href="{{ url('profiles') }}">
+                                                Students
+                                            </a>
+                                            @endif
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
+                                            <a class="dropdown-item" id="dropdown-link" href="{{ route('profile', Auth::user()) }}">
+                                                Profile
+                                            </a>
 
-                            </div>
-                        </li>
+                                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+
+                                        </div>
+                                    </li>
+
                         @endguest
-                    </ul>
+
+
+
+                            
+                        </ul>
+
+
+                        </div>
+                    </div>
                 </div>
+                
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4" style="margin-left: 350px;">
             @yield('content')
         </main>
     </div>

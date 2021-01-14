@@ -1,6 +1,17 @@
 body {
     background-color: #f5f5f5;
     /* font-family: 'Open Sans', sans-serif; */
+    background-image: url('../images/background.jpg');
+    
+    background-size: cover;
+   
+
+}
+
+
+@keyframes example {
+  from {background-color: red;}
+  to {background-color: yellow;}
 }
 
 /* .icon-inner, .ionicon, svg {
@@ -151,4 +162,29 @@ tr:last-child td:last-child {
 .modal-content {
     border-radius: 20px;
     border: none;
+}
+.sidenav {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+   padding-left: 0.5rem;
+    padding-right: 0.1rem;
+    overflow-y: auto;
+        margin-right: 280px;
+}
+
+
+.linkjes{
+     padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+   
+    display: block;
+    transition: 0.3s;
+
+}
+
+.logo img{
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
