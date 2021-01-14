@@ -10592,7 +10592,7 @@ button.bg-dark:focus {
   text-align: center !important;
 }
 
-@media (min-width: 576px) {
+/*@media (min-width: 576px) {
   .text-sm-left {
     text-align: left !important;
   }
@@ -10605,10 +10605,14 @@ button.bg-dark:focus {
     text-align: center !important;
   }
 }
-
+*/
 @media (min-width: 768px) {
   .text-md-left {
     text-align: left !important;
+  }
+
+  .app{
+    width: 100%!important;
   }
 
   .text-md-right {
@@ -10624,7 +10628,9 @@ button.bg-dark:focus {
   .text-lg-left {
     text-align: left !important;
   }
-
+ .app{
+    width: 100%!important;
+  }
   .text-lg-right {
     text-align: right !important;
   }
