@@ -9,9 +9,8 @@ use App\http\Controllers\Qualification_fileController;
 use App\http\Controllers\competitionController;
 use App\http\Controllers\StudentFileController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Auth::routes();
 

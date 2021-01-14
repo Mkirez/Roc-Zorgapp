@@ -34,7 +34,7 @@
         <nav class=" navbar-expand-md navbar-light  shadow-sm sidenav" style="background-color:#F07310;">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-12 text-center">
+                    <div class="col-md-12 text-center no-padding">
                         <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="{{ asset('images/logo.png') }} " style="width: 66%;     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));">
                         </a>
@@ -42,75 +42,129 @@
                         <span class="navbar-toggler-icon"></span>
                         </button>
 
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
 
-                        <ul>
+                        <ul class="navbar-ul">
                             @guest
                                 @if (Route::has('login'))
-                                    <li class="links">
+                                    <li class="linkjes">
                                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                     </li>
                                 @endif
                                  @if (Route::has('register'))
-                                    <li class="links">
+                                    <li class="linkjes">
                                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
                                 @endif
                                 @else
-                                    <li class="links dropdown">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                            {{ auth()->user()->name }}
-                                        </a>
+                                        <br>
 
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                               
+
+
+                                   
+                                    
                                         @if(!App\Models\Qualification_file::all()->count() > 0)
                                             @if(!auth()->user()->bpv())
-                                            <a class="dropdown-item" id="dropdown-link" href="{{ url('qualification_file') }}">
-                                                @if(auth()->user()->education())
-                                                    Qualification file
-                                                @else
-                                                    Competitions
-                                                @endif
-                                            </a>
+
+                                            <li class="linkjes">
+                                                <span class="gridCheck">
+                                                    <ion-icon name="options"></ion-icon>
+                                                </span>
+                                                <a  href="{{ url('qualification_file') }}" class="gridCheck">
+                                                    @if(auth()->user()->education())
+                                                        Qualification file
+                                                    @else
+                                                        Competitions
+                                                    @endif
+                                                </a>
+                                            </li>
+                                        <br>
+
+                                            
                                             @endif
                                         @else
-                                        <a class="dropdown-item" id="dropdown-link" href="{{ url('qualification_file/1') }}">
+
+
+                                        <li class="linkjes">
+                                            <span class="gridCheck">
+                                                    <ion-icon name="options"></ion-icon>
+                                                </span>
+                                            <a  href="{{ url('qualification_file/1') }}" class="gridCheck">
                                                 @if(auth()->user()->education())
                                                     Qualification file
                                                 @else
                                                     Competitions
                                                 @endif
                                             </a>
+                                        </li>
+                                        <br>
+
                                         @endif
 
                                             @if(auth()->user()->student())
-                                            <a class="dropdown-item" id="dropdown-link" href="{{ url('log') }}">
+                                        <li class="linkjes">
+                                            <span class="gridCheck">
+                                                    <ion-icon name="time"></ion-icon>
+                                                </span>
+                                            <a   href="{{ url('log') }}" class="gridCheck">
                                                 Log hours
                                             </a>
+                                        </li>
+                                        <br>
+                                       
+
                                             @endif
 
                                             @if(auth()->user()->education() || auth()->user()->bpv())
-                                            <a class="dropdown-item" id="dropdown-link" href="{{ url('profiles') }}">
+                                        <li class="linkjes">
+                                            <span class="gridCheck">
+                                                    <i class="fa fa-user"></i>
+                                                </span>
+                                            <a  href="{{ url('profiles') }}" class="gridCheck">
                                                 Students
                                             </a>
-                                            @endif
+                                        </li>
+                                        <br>
+                                        
 
-                                            <a class="dropdown-item" id="dropdown-link" href="{{ route('profile', Auth::user()) }}">
+                                            @endif
+                                        <li class="linkjes">
+                                           <span class="gridCheck">
+                                                    <i class="fa fa-user"></i>
+                                                </span>
+                                            <a  href="{{ route('profile', Auth::user()) }} " class="gridCheck">
                                                 Profile
                                             </a>
+                                        </li>
+                                        <br>
+                                        
 
-                                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+
+
+                                        <li class="linkjes">
+                                           <span class="gridCheck">
+                                                    <i class="fa fa-angle-down"></i>
+                                                </span>
+                                            <a class="gridCheck"  href="{{ route('logout') }}" onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
                                                 {{ __('Logout') }}
                                             </a>
+                                        </li>
+                                        <br>
+                                        
+
+
+
+
 
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                                 @csrf
                                             </form>
-
-                                        </div>
-                                    </li>
+                          
+                                  
 
                         @endguest
 
