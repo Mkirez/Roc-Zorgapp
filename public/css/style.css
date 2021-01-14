@@ -167,6 +167,7 @@ tr:last-child td:last-child {
     display: block;
     position: fixed;
     top: 0;
+    padding-top: 39px;
     bottom: 0;
    padding-left: 0.5rem;
     padding-right: 0.1rem;
@@ -177,11 +178,12 @@ tr:last-child td:last-child {
 
 .linkjes {
     padding: 8px;
-    
+    margin-top: 32px;
     text-decoration: none;
-        font-size: 16px;
+    font-size: 16px;
     font-weight: 800;
-    display: block;
+    display: inline-flex;
+    margin-left: 8px;
     width: 100%;
     text-align: left;
     color: white;
@@ -224,5 +226,6 @@ tr:last-child td:last-child {
 }
 
 .gridCheck{
-    line-height: 10px;
+    margin-left: 1px;
 }
+

@@ -70,9 +70,14 @@
                                             @if(!auth()->user()->bpv())
 
                                             <li class="linkjes">
-                                                <span class="gridCheck">
-                                                    <ion-icon name="options"></ion-icon>
-                                                </span>
+                                            <button class="gridCheck">
+                                                <ion-icon name="options"  >
+                                                    
+                                                </ion-icon>
+                                                
+                                                
+                                            </button>
+                                                
                                                 <a  href="{{ url('qualification_file') }}" class="gridCheck">
                                                     @if(auth()->user()->education())
                                                         Qualification file
@@ -107,7 +112,7 @@
                                             @if(auth()->user()->student())
                                         <li class="linkjes">
                                             <span class="gridCheck">
-                                                    <ion-icon name="time"></ion-icon>
+                                                    <ion-icon name="people"></ion-icon>
                                                 </span>
                                             <a   href="{{ url('log') }}" class="gridCheck">
                                                 Log hours
@@ -121,7 +126,7 @@
                                             @if(auth()->user()->education() || auth()->user()->bpv())
                                         <li class="linkjes">
                                             <span class="gridCheck">
-                                                    <i class="fa fa-user"></i>
+                                                    <ion-icon name="people"></ion-icon>
                                                 </span>
                                             <a  href="{{ url('profiles') }}" class="gridCheck">
                                                 Students
@@ -144,9 +149,9 @@
 
 
 
-                                        <li class="linkjes">
+                                        <li class="linkjes ">
                                            <span class="gridCheck">
-                                                    <i class="fa fa-angle-down"></i>
+                                                    <ion-icon name="log-out"></ion-icon>
                                                 </span>
                                             <a class="gridCheck"  href="{{ route('logout') }}" onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
