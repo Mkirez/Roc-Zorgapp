@@ -205,7 +205,22 @@ tr:last-child td:last-child {
     transition: 0s;
 }
 
+
 .linkjes:hover a  {
+    color:  #F07310;
+    text-decoration: none;
+    background-color:white;
+}
+
+#active  {
+    color:  #F07310;
+    text-decoration: none;
+    background-color:white;
+    border-radius: 10px;
+    transition: 0s;
+}
+
+#active a {
     color:  #F07310;
     text-decoration: none;
     background-color:white;

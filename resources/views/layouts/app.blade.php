@@ -29,166 +29,166 @@
     <!-- <link rel="stylesheet" href="custom.css"> -->
 </head>
 
-<body >
+<body>
 
 
-    <div id="app" >
+    <div id="app">
         <nav class=" navbar-expand-md navbar-light  shadow-sm sidenav" style="background-color:#F07310;">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-12 text-center no-padding">
                         <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ asset('images/logo.png') }} " style="width: 66%;     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));">
+                            <img src="{{ asset('images/logo.png') }} " style="width: 66%;     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));">
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon"></span>
                         </button>
 
                         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
+                            <!-- Left Side Of Navbar -->
 
-                        <ul class="navbar-ul">
-                            @guest
+                            <ul class="navbar-ul">
+                                @guest
                                 @if (Route::has('login'))
-                                    <li class="linkjes">
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                    </li>
+                                <li class="linkjes">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
                                 @endif
-                                 @if (Route::has('register'))
-                                    <li class="linkjes">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                    </li>
+                                @if (Route::has('register'))
+                                <li class="linkjes">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
                                 @endif
                                 @else
-                                        <br>
+                                <br>
 
 
-                               
 
 
-                                   
-                                    
-                                        @if(!App\Models\Qualification_file::all()->count() > 0)
-                                            @if(!auth()->user()->bpv())
 
-                                            <li class="linkjes">
-                                            <button class="gridCheck">
-                                                <ion-icon name="options"  >
-                                                    
-                                                </ion-icon>
-                                                
-                                                
-                                            </button>
-                                                
-                                                <a  href="{{ url('qualification_file') }}" class="gridCheck">
-                                                    @if(auth()->user()->education())
-                                                        Qualification file
-                                                    @else
-                                                        Competitions
-                                                    @endif
-                                                </a>
-                                            </li>
-                                        <br>
 
-                                            
-                                            @endif
+
+                                @if(!App\Models\Qualification_file::all()->count() > 0)
+                                @if(!auth()->user()->bpv())
+
+                                <li id="{{ request()->is('qualification_file') ? 'active' : '' }}" class="linkjes">
+                                    <button class="gridCheck">
+                                        <ion-icon name="options">
+
+                                        </ion-icon>
+
+
+                                    </button>
+
+                                    <a href="{{ url('qualification_file') }}" class="gridCheck">
+                                        @if(auth()->user()->education())
+                                        Qualification file
                                         @else
-
-
-                                        <li class="linkjes">
-                                            <span class="gridCheck">
-                                                    <ion-icon name="options"></ion-icon>
-                                                </span>
-                                            <a  href="{{ url('qualification_file/1') }}" class="gridCheck">
-                                                @if(auth()->user()->education())
-                                                    Qualification file
-                                                @else
-                                                    Competitions
-                                                @endif
-                                            </a>
-                                        </li>
-                                        <br>
-
+                                        Competitions
                                         @endif
-
-                                            @if(auth()->user()->student())
-                                        <li class="linkjes">
-                                            <span class="gridCheck">
-                                                    <ion-icon name="people"></ion-icon>
-                                                </span>
-                                            <a   href="{{ url('log') }}" class="gridCheck">
-                                                Log hours
-                                            </a>
-                                        </li>
-                                        <br>
-                                       
-
-                                            @endif
-
-                                            @if(auth()->user()->education() || auth()->user()->bpv())
-                                        <li class="linkjes">
-                                            <span class="gridCheck">
-                                                    <ion-icon name="people"></ion-icon>
-                                                </span>
-                                            <a  href="{{ url('profiles') }}" class="gridCheck">
-                                                Students
-                                            </a>
-                                        </li>
-                                        <br>
-                                        
-
-                                            @endif
-                                        <li class="linkjes">
-                                           <span class="gridCheck">
-                                                    <i class="fa fa-user"></i>
-                                                </span>
-                                            <a  href="{{ route('profile', Auth::user()) }} " class="gridCheck">
-                                                Profile
-                                            </a>
-                                        </li>
-                                        <br>
-                                        
+                                    </a>
+                                </li>
+                                <br>
 
 
+                                @endif
+                                @else
 
-                                        <li class="linkjes ">
-                                           <span class="gridCheck">
-                                                    <ion-icon name="log-out"></ion-icon>
-                                                </span>
-                                            <a class="gridCheck"  href="{{ route('logout') }}" onclick="event.preventDefault();
+
+                                <li id="{{ request()->is('qualification_file/1') ? 'active' : '' }}" class="linkjes">
+                                    <span class="gridCheck mr-1">
+                                        <ion-icon name="options"></ion-icon>
+                                    </span>
+                                    <a href="{{ url('qualification_file/1') }}" class="gridCheck">
+                                        @if(auth()->user()->education())
+                                        Qualification file
+                                        @else
+                                        Competitions
+                                        @endif
+                                    </a>
+                                </li>
+                                <br>
+
+                                @endif
+
+                                @if(auth()->user()->student())
+                                <li id="{{ request()->is('log') ? 'active' : '' }}" class="linkjes">
+                                    <span class="gridCheck mr-1">
+                                        <ion-icon name="people"></ion-icon>
+                                    </span>
+                                    <a href="{{ url('log') }}" class="gridCheck">
+                                        Log hours
+                                    </a>
+                                </li>
+                                <br>
+
+
+                                @endif
+
+                                @if(auth()->user()->education() || auth()->user()->bpv())
+                                <li id="{{ request()->is('profiles') ? 'active' : '' }}" class="linkjes">
+                                    <span class="gridCheck mr-1">
+                                        <ion-icon name="people"></ion-icon>
+                                    </span>
+                                    <a href="{{ url('profiles') }}" class="gridCheck">
+                                        Students
+                                    </a>
+                                </li>
+                                <br>
+
+
+                                @endif
+                                <li id="{{ request()->is('profiles/'. \Auth::user()->id) ? 'active' : '' }}" class="linkjes">
+                                    <span class="gridCheck mr-1">
+                                    <ion-icon name="person"></ion-icon>
+                                    </span>
+                                    <a href="{{ route('profile', Auth::user()) }} " class="gridCheck">
+                                        Profile
+                                    </a>
+                                </li>
+                                <br>
+
+
+
+
+                                <li class="linkjes ">
+                                        <span class="gridCheck">
+                                            <ion-icon name="log-out"></ion-icon>
+                                        </span>
+                                    <a class="gridCheck" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
-                                        </li>
-                                        <br>
-                                        
+                                        {{ __('Logout') }}
+                                    </a>
+                                </li>
+                                <br>
 
 
 
 
 
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
-                          
-                                  
 
-                        @endguest
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
 
 
 
-                            
-                        </ul>
+                                @endguest
+
+
+
+
+                            </ul>
 
 
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </nav>
 
-        <main class="py-4" style="margin-left: 350px;">
+        <main class="py-4" style="margin-left: 40px;">
             @yield('content')
         </main>
     </div>
