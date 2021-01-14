@@ -170,8 +170,10 @@
         </tbody>
     </table>
 
+    @else
+    <p>No logs yet.</p>
+    @endif
 </div>
-@endif
 <script>
     // $(document).ready(function() {
         // $("#toggle").hover(
