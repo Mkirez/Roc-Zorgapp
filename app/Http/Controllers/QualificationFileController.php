@@ -21,6 +21,7 @@ class QualificationFileController extends Controller
         //     $files = Auth::user()->qualification_files(); // education sees only his/hers qualification files
         // }
 
+        
         return view('qualification_file.index', compact('files'));
     }
 
