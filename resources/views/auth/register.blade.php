@@ -16,7 +16,7 @@
                           
                             <div class="col-md-12">
                                 <select class="mt-2 form-control" name="user_type" id="user_type" onchange="displayDivDemo('hideValuesOnSelect', this)" required>
-                                    <option value="" {{ old('user_type') == "" ? "selected" :""}}>user type</option>
+                                    <option value="" {{ old('user_type') == "" ? "selected" :""}}>Function</option>
                                     <option value="0" {{ old('user_type') == "0" ? "selected" :""}}>Education</option>
                                     <option value="1" {{ old('user_type') == "1" ? "selected" :""}}>Student</option>
                                     <option value="2" {{ old('user_type') == "2" ? "selected" :""}}>BPV</option>
@@ -28,7 +28,7 @@
 
                             <div class="col-md-12">
 
-                                <input id="name" type="text" placeholder="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" placeholder="Name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -89,16 +89,16 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary" style="width: 100%;">
-                                    create
+                                    Create
                                 </button>
                             </div>
                         </div>
-                        <div class="form-check text-center">
+                        <div class="form-check text-center mt-3">
                               
                               <label class="form-check-label" for="gridCheck">
-                                already have an account
+                                Already have an account?
                               </label>
-                              <a href="{{ route('login') }}"  class="gridCheck">sign in</a>
+                              <a href="{{ route('login') }}"  class="gridCheck">Sign in</a>
                             </div>
                     </form>
                 </div>

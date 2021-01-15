@@ -174,8 +174,6 @@
         </tbody>
     </table>
 
-    @else
-    <p>No logs yet.</p>
     @endif
 </div>
 <script>

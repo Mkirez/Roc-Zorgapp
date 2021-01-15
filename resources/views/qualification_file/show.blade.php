@@ -5,7 +5,7 @@
 <div class="container mt-4">
     <div class="row mb-5">
         <div class="col-xs-12 col-sm-12 col-md-6 float-left">
-            <h1 class="competitions-title">Competitions - {{ $qualification_file->name }}</h1>
+            <h1 class="competitions-title">Qualification file - {{ $qualification_file->name }}</h1>
             <a title="Show qualification file" id="edit" target="_blank" href="{{ $qualification_file->file }}" style="background: none; border: none; padding: 0; outline: inherit;">
                 <ion-icon name="reader-outline"></ion-icon>
             </a>
@@ -18,7 +18,7 @@
 
         @if(auth()->user()->education())
         <div class="col-xs-12 col-sm-12 col-md-6 text-right comptetitions-button">
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">Add competition</button>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">Add work proces</button>
         </div>
         @endif
         @if(auth()->user()->student())
@@ -137,7 +137,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New competition</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">New work proces</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -171,7 +171,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit competition</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit work proces</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

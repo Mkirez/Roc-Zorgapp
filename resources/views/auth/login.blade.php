@@ -8,7 +8,7 @@
                 <div class="card-header" style="border: none; padding:39px 0px 8px 0px; ">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <h2><strong>{{ __('sign in') }}</strong></h2>
+                            <h2><strong>{{ __('Sign in') }}</strong></h2>
                         </div>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                            
 
                             <div class="col-md-12">
-                                <input id="email" placeholder="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" placeholder="E-mail" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -35,7 +35,7 @@
 
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <input id="password" placeholder="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -62,9 +62,9 @@
                             <div class="form-check justify-content-center">
                               
                               <label class="form-check-label" for="gridCheck">
-                                dont have a account
+                                Don't have an account?
                               </label>
-                              <a href="{{ route('register') }}" class="gridCheck">sign in</a>
+                              <a href="{{ route('register') }}" class="gridCheck">Sign up</a>
                             </div>
                          </div>
 

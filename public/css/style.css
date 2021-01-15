@@ -190,7 +190,7 @@ tr:last-child td:last-child {
 }
 
 
-.linkjes {
+.nav-links {
     padding: 8px;
     margin-top: 32px;
     text-decoration: none;
@@ -203,12 +203,12 @@ tr:last-child td:last-child {
     color: white;
     transition: 0.3s;
 }
-.linkjes a{
+.nav-links a{
     color: white;
     text-decoration: none;
 }
 
-.linkjes:hover  {
+.nav-links:hover  {
     color:  #F07310;
     text-decoration: none;
     background-color:white;
@@ -217,7 +217,7 @@ tr:last-child td:last-child {
 }
 
 
-.linkjes:hover a  {
+.nav-links:hover a  {
     color:  #F07310;
     text-decoration: none;
     background-color:white;
