@@ -141,6 +141,18 @@ tr:last-child td:last-child {
     border-bottom-right-radius: 12px;
 }
 
+#width_table {
+    /* background-color: red; */
+    width: 50%;
+}
+
+#textarea_style {
+    /* height: auto; */
+    /* overflow: auto; */
+    /* resize: vertical;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; */
+}
+
 .table tr:last-child th:first-child {
     border-bottom-left-radius: 12px;
     /* background-color: red; */
@@ -304,7 +316,9 @@ th, td {
 }
 
 
-
+#search {
+    opacity: 0.9;
+}
 
 #profile-card{
     max-width: 400px;

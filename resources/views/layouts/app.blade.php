@@ -94,7 +94,7 @@
                                         <ion-icon name="options"></ion-icon>
                                     </span>
                                     <a href="{{ url('qualification_file/1') }}" class="gridCheck">
-                                        @if(auth()->user()->education())
+                                        @if(auth()->user()->education() || auth()->user()->bpv())
                                         Qualification file
                                         @else
                                         Work processes  

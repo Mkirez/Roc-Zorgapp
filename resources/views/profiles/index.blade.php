@@ -5,7 +5,7 @@
         <div class="col-md-8 float-left">
             <h2>Students</h2>
         </div>
-        <div class="col-md-4 flex-right">
+        <div class="col-md-4 flex-right" id="search">
             <input class="form-control" id="myInput" type="text" placeholder="Search..">
         </div>
     </div>
@@ -18,7 +18,7 @@
                 <th style="padding-left: 20px;" scope="col">Name</th>
                 @if(!auth()->user()->bpv())
                 <th scope="col">Intern at</th>
-                <th scope="col">Status competitions</th>
+                <th scope="col">Status work processes</th>
                 @endif
                 <th scope="col">Hours</th>
                 <th scope="col">Member Since</th>

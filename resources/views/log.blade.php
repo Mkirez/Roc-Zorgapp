@@ -15,7 +15,7 @@
             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#logModal">Add</button>
         </div>
         @else
-        <div>To create a log: update 'interns at' on profile</div>
+        <div class="col-md-6 text-right pt-2"><strong>Update 'intern at' on profile</strong></div>
         @endif
 
     </div>
@@ -24,7 +24,7 @@
     <table class="shadow table table-striped table-sm table-hover">
         <thead>
             <tr>
-                <th style="padding-left: 20px;" scope="col">Description</th>
+                <th id="width_table" style="padding-left: 20px;" scope="col">Description</th>
                 <th scope="col">Hours</th>
                 <th scope="col">Company</th>
                 <th scope="col">Date</th>
@@ -80,7 +80,7 @@
 
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <input type="text" name="description" class="form-control" id="description" value="{{ old('description') }}" required>
+                        <input id="textarea_style" type="text" name="description" class="form-control" id="description" value="{{ old('description') }}" required>
 
                         @error('description')
                         <span class="text-danger">{{ $message }}</span>
@@ -130,7 +130,7 @@
 
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <input type="text" name="description" class="form-control" id="description" value="{{ $log->description }}" required>
+                        <input id="textarea_style" type="text" name="description" class="form-control" id="description" value="{{ $log->description }}" required>
 
                         @error('description')
                         <span class="text-danger">{{ $message }}</span>

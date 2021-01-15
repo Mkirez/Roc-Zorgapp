@@ -6,7 +6,7 @@
         <div class="col-xs-4 col-md-4   col-lg-5">
             <div class="card shadow" style="border: none; padding:29px 0px 8px 0px; ">
                  <div class="col-md-12 text-center">
-                            <h2><strong>create account</strong></h2>
+                            <h2><strong>Create account</strong></h2>
                         </div>
 
                 <div class="card-body" style="    padding: 3.55rem;">
@@ -41,7 +41,7 @@
                             
                             <div class="col-md-12">
                                 
-                                <input id="organization" type="text" placeholder="organization" class="form-control @error('organization') is-invalid @enderror" name="organization" value="{{ old('organization') }}" autocomplete="organization" autofocus>
+                                <input id="organization" type="text" placeholder="Organization" class="form-control @error('organization') is-invalid @enderror" name="organization" value="{{ old('organization') }}" autocomplete="organization" autofocus>
 
                                 @error('organization')
                                 <span class="invalid-feedback" role="alert">
@@ -82,7 +82,7 @@
                             
 
                             <div class="col-md-12">
-                                <input id="password-confirm" placeholder="confirm password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" placeholder="Confirm password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 

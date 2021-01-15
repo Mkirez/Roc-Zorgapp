@@ -25,11 +25,12 @@ class QualificationFileController extends Controller
         return view('qualification_file.index', compact('files'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
         Qualification_file::create($this->validateQualification_file());
-
-        return back();
+        
+        // return back();
+        return redirect('qualification_file/1');
     }
 
     public function show(Qualification_file $qualification_file)

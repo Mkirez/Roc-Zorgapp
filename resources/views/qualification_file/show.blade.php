@@ -18,7 +18,7 @@
 
         @if(auth()->user()->education())
         <div class="col-xs-12 col-sm-12 col-md-6 text-right comptetitions-button">
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">Add work proces</button>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">Add work process</button>
         </div>
         @endif
         @if(auth()->user()->student())
@@ -137,7 +137,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New work proces</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">New work process</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -171,7 +171,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit work proces</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit work process</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
