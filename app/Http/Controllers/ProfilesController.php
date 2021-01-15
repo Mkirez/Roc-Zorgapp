@@ -29,11 +29,11 @@ class ProfilesController extends Controller
         $bpvs = DB::table('users')->where('user_type', 2)->get();
         $student_files = $user->student_files();
         if (Qualification_file::all()->count() > 0){
-            $competitions = Qualification_file::find(1)->competitions;
+            $competitions = Qualification_file::find(1)->competitions->sortBy('name');
         } else {
             $competitions = [];
         }
-        $logs = collect($user->logs()->where('bpv_id', Auth::user()->id));
+        $logs = collect($user->logs()->where('bpv_id', Auth::user()->id)->sortBy('date'));
 
         return view('profiles.show', compact('user', 'bpvs', 'student_files', 'competitions', 'logs'));
     }

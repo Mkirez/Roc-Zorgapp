@@ -88,7 +88,7 @@
                     </div>
                     <div class="form-group">
                         <label for="hours">Hours</label>
-                        <input type="text" name="hours" class="form-control" id="hours" value="{{ old('hours') }}" required>
+                        <input type="text" maxlength="2" name="hours" class="form-control" id="hours" value="{{ old('hours') }}" required>
 
                         @error('hours')
                         <span class="text-danger">{{ $message }}</span>
@@ -138,7 +138,7 @@
                     </div>
                     <div class="form-group">
                         <label for="hours">Hours</label>
-                        <input type="text" name="hours" class="form-control" id="hours" value="{{ $log->hours }}" required>
+                        <input type="text" maxlength="2" name="hours" class="form-control" id="hours" value="{{ $log->hours }}" required>
 
                         @error('hours')
                         <span class="text-danger">{{ $message }}</span>

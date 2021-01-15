@@ -11,7 +11,7 @@ class LogController extends Controller
 {
     public function index()
     {
-        $logs = Auth::user()->logs();
+        $logs = Auth::user()->logs()->sortBy('date');
 
         return view('log', compact('logs'));
     }
