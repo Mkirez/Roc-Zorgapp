@@ -2,56 +2,60 @@
 @section('content')
 
 <div class="container mt-4">
-    <div class="row">
-        <div class="col-4">
-            <div>
-                <p>Name: {{ $user->name }}</p>
-            </div>
-            <div>
-                <p>E-mail: {{ $user->email }}</p>
-            </div>
+    <div class="card" id="profile-card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <p>Name: {{ $user->name }}</p>
+                    </div>
+                    <div>
+                        <p>E-mail: {{ $user->email }}</p>
+                    </div>
 
-            @if(auth()->user()->education() && $user->student())
-            <div>
-                <p>Interns at: {{ $user->interns_at->pluck('organization')->first() }}</p>
-            </div>
-            @endif
+                    @if(auth()->user()->education() && $user->student())
+                    <div>
+                        <p>Interns at: {{ $user->interns_at->pluck('organization')->first() }}</p>
+                    </div>
+                    @endif
 
-            @if($user->bpv())
-            <div>
-                <p>Organization: {{ $user->organization }}</p>
-            </div>
-            @endif
+                    @if($user->bpv())
+                    <div>
+                        <p>Organization: {{ $user->organization }}</p>
+                    </div>
+                    @endif
 
-            @if(auth()->user() == $user)
-            <div>
-                <p>Password: ********</p>
-            </div>
-            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#profileModal">
-                Edit
-            </button>
-            @endif
+                    @if(auth()->user() == $user)
+                    <div>
+                        <p>Password: ********</p>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#profileModal">
+                        Edit
+                    </button>
+                    @endif
 
-            @if(auth()->user()->student())
-            <div class="mt-5">
-                <p>Intern at</p>
-                <form method="POST" action="intern">
-                    @csrf
-                    <select name="bpv" required>
-                        <option value="">Choose</option>
-                        @foreach ($bpvs as $bpv)
-                        <option value="{{ $bpv->id }}" {{ ($user->interns_at->pluck('id')->first() == $bpv->id) ? 'selected' : '' }}>
-                            {{ $bpv->organization }}
-                        </option>
+                    @if(auth()->user()->student())
+                    <div class="mt-5">
+                        <p>Intern at</p>
+                        <form method="POST" action="intern">
+                            @csrf
+                            <select name="bpv" required>
+                                <option value="">Choose</option>
+                                @foreach ($bpvs as $bpv)
+                                <option value="{{ $bpv->id }}" {{ ($user->interns_at->pluck('id')->first() == $bpv->id) ? 'selected' : '' }}>
+                                    {{ $bpv->organization }}
+                                </option>
 
-                        @endforeach
-                    </select>
-                    <button type="submit" class="btn btn-sm btn-primary ml-2">Change</button>
-                </form>
+                                @endforeach
+                            </select>
+                            <button type="submit" class="btn btn-sm btn-primary ml-2">Change</button>
+                        </form>
+                    </div>
+                    @endif
+                </div>
             </div>
-            @endif
         </div>
-    </div>
+    </div>    
 </div>
 
 

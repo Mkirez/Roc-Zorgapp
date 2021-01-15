@@ -259,6 +259,7 @@ tr:last-child td:last-child {
     margin-left: 1px;
 }
 
+<<<<<<< HEAD
 
 
 @media screen and (max-width: 768px) {
@@ -299,3 +300,11 @@ th, td {
 
 
 
+=======
+#profile-card{
+    max-width: 400px;
+    opacity: 0.9;
+    margin: 0 auto;
+    margin-top: 145px;
+}
+>>>>>>> branch-mert
