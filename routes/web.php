@@ -35,4 +35,3 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('studentinfo', StudentinfoController::class);
 });
-
