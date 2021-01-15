@@ -180,7 +180,7 @@ tr:last-child td:last-child {
     bottom: 0;
    padding-left: 0.5rem;
     padding-right: 0.1rem;
-    overflow-y: auto;
+    /*overflow-y: auto;*/
        /* margin-right: 280px;*/
             margin-right: 87px;
 
@@ -261,14 +261,15 @@ tr:last-child td:last-child {
 
 
 
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .competitions-title{
         font-size: 1.25rem;
     }
      .app{
     width: 100%!important;
+
   }
+
 
     .comptetitions-button{
         text-align: center!important;
@@ -278,6 +279,7 @@ tr:last-child td:last-child {
     }
     .toggler{
         display: none;
+        word-break: break-word;
     }
     .sidenav {
     display: none!important;
@@ -308,3 +310,7 @@ th, td {
     /* margin-top: 145px; */
 }
 
+
+.no-collapse{
+    display: flex!important;
+}

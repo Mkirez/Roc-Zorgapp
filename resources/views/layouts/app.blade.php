@@ -40,11 +40,9 @@
                         <a class="navbar-brand" href="{{ url('/') }}">
                             <img src="{{ asset('images/logo.png') }} " style="width: 66%;     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));">
                         </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+                       
 
-                        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                        <div class="collapse no-collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                             <!-- Left Side Of Navbar -->
 
                             <ul class="navbar-ul">
@@ -346,7 +344,7 @@
             </div>
         </nav>
 
-        <main class="py-4" style="margin-left: 80px;">
+        <main class="py-4" style="margin-left: 240px;">
             @yield('content')
         </main>
     </div>
