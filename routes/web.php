@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\http\Controllers\ProfilesController;
 use App\http\Controllers\InternshipController;
 use App\http\Controllers\LogController;
-use App\http\Controllers\QualificationFileController;
+use App\http\Controllers\qualificationfileController;
 use App\http\Controllers\competitionController;
 use App\http\Controllers\StudentFileController;
 
@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
 
     Route::patch('{log}', [App\Http\Controllers\ApproveController::class, 'approveLog'])->name('approveLog');
     
-    Route::resource('qualification_file', QualificationFileController::class);
+    Route::resource('qualification_file', qualificationfileController::class);
 
     Route::resource('competition', competitionController::class);
     
