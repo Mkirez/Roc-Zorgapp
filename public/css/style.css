@@ -184,6 +184,9 @@ tr:last-child td:last-child {
        /* margin-right: 280px;*/
             margin-right: 87px;
 
+    box-shadow: #221f1f7a 3px 3px 8px 0px!important;
+
+
 }
 .uppernav{
     display: none;
