@@ -79,7 +79,7 @@
     </div>
 </div>
 @endif
-@if (count($errors) > 0)
+@if (!App\Models\Qualification_file::all()->count() > 0)
 <script>
     $(document).ready(function() {
         $('#exampleModal').modal('show');

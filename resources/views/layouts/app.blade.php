@@ -99,7 +99,7 @@
                                         @if(auth()->user()->education())
                                         Qualification file
                                         @else
-                                        Work processes
+                                        Work processes  
                                         @endif
                                     </a>
                                 </li>
@@ -346,7 +346,7 @@
             </div>
         </nav>
 
-        <main class="py-4" style="margin-left: 350px;">
+        <main class="py-4" style="margin-left: 80px;">
             @yield('content')
         </main>
     </div>

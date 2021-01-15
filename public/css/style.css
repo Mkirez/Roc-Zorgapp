@@ -304,7 +304,7 @@ th, td {
 #profile-card{
     max-width: 400px;
     opacity: 0.9;
-    margin: 0 auto;
-    margin-top: 145px;
+    /* margin: 0 auto; */
+    /* margin-top: 145px; */
 }
 

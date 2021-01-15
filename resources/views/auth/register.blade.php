@@ -16,7 +16,7 @@
                           
                             <div class="col-md-12">
                                 <select class="mt-2 form-control" name="user_type" id="user_type" onchange="displayDivDemo('hideValuesOnSelect', this)" required>
-                                    <option value="" {{ old('user_type') == "" ? "selected" :""}}>Function</option>
+                                    <option value="" {{ old('user_type') == "" ? "selected" :""}}>Account type</option>
                                     <option value="0" {{ old('user_type') == "0" ? "selected" :""}}>Education</option>
                                     <option value="1" {{ old('user_type') == "1" ? "selected" :""}}>Student</option>
                                     <option value="2" {{ old('user_type') == "2" ? "selected" :""}}>BPV</option>
