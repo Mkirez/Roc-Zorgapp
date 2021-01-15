@@ -20,6 +20,8 @@ class ProfilesController extends Controller
             // dd($students);
         } elseif (Auth::user()->bpv()) {
             $students = Auth::user()->interns;
+        } else {
+            abort(404);
         }
         return view('profiles.index', compact('students'));
     }
