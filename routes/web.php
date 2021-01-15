@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\http\Controllers\ProfilesController;
-use App\http\Controllers\InternshipController;
-use App\http\Controllers\LogController;
-use App\http\Controllers\QualificationFileController;
-use App\http\Controllers\competitionController;
-use App\http\Controllers\StudentFileController;
+use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\LogController;
+use App\Http\Controllers\InternshipController;
+use App\Http\Controllers\QualificationFileController;
+use App\Http\Controllers\competitionController;
+use App\Http\Controllers\StudentFileController;
 
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

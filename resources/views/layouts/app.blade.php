@@ -71,7 +71,7 @@
                                         @if(!App\Models\Qualification_file::all()->count() > 0)
                                             @if(!auth()->user()->bpv())
 
-                                            <li class="linkjes">
+                                            <li id="{{ request()->is('qualification_file') ? 'active' : '' }}" class="linkjes">
                                             <button class="gridCheck">
                                                 <ion-icon name="options"  >
                                                     
@@ -80,7 +80,7 @@
                                                 
                                             </button>
                                                 
-                                                <a  href="{{ url('qualification_file') }}" class="gridCheck">
+                                                <a href="{{ url('qualification_file') }}" class="gridCheck">
                                                     @if(auth()->user()->education())
                                                         Qualification file
                                                     @else
@@ -95,7 +95,7 @@
                                         @else
 
 
-                                        <li class="linkjes">
+                                        <li id="{{ request()->is('qualification_file/1') ? 'active' : '' }}" class="linkjes">
                                             <span class="gridCheck">
                                                     <ion-icon name="options"></ion-icon>
                                                 </span>
@@ -112,7 +112,7 @@
                                         @endif
 
                                             @if(auth()->user()->student())
-                                        <li class="linkjes">
+                                        <li id="{{ request()->is('qualification_file/1') ? 'active' : '' }}" class="linkjes">
                                             <span class="gridCheck">
                                                     <ion-icon name="people"></ion-icon>
                                                 </span>
@@ -126,7 +126,7 @@
                                             @endif
 
                                             @if(auth()->user()->education() || auth()->user()->bpv())
-                                        <li class="linkjes">
+                                        <li id="{{ request()->is('profiles') ? 'active' : '' }}" class="linkjes">
                                             <span class="gridCheck">
                                                     <ion-icon name="people"></ion-icon>
                                                 </span>
@@ -138,7 +138,7 @@
                                         
 
                                             @endif
-                                        <li class="linkjes">
+                                        <li id="{{ request()->is('profiles/'. \Auth::user()->id) ? 'active' : '' }}" class="linkjes">
                                            <span class="gridCheck">
                                                     <i class="fa fa-user"></i>
                                                 </span>
