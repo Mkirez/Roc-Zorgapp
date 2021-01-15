@@ -34,7 +34,7 @@
                     </button>
                     @endif
 
-                    @if(auth()->user()->student())
+                    @if(auth()->user()->student() && auth()->user()->id == $user->id)
                     <div class="mt-5">
                         <p>Intern at</p>
                         <form method="POST" action="intern">
