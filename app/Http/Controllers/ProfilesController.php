@@ -35,7 +35,7 @@ class ProfilesController extends Controller
         } else {
             $competitions = [];
         }
-        $logs = collect($user->logs()->where('bpv_id', Auth::user()->id)->sortBy('date'));
+        $logs = collect($user->logs()->where('bpv_id', Auth::user()->id)->sortByDesc('date'));
 
         return view('profiles.show', compact('user', 'bpvs', 'student_files', 'competitions', 'logs'));
     }
