@@ -11,7 +11,7 @@ class StudentFileController extends Controller
 {
     public function store(Request $request)
     {
-        Student_file::updateOrCreate(['competition_id' => $request->competition_id], $this->validateFile());
+        Student_file::updateOrCreate(['competition_id' => $request->competition_id, 'user_id' => $request->user_id], $this->validateFile());
 
         return back();
     }
