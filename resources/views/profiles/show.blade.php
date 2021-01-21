@@ -103,8 +103,10 @@
 </div>
 <br>
 @if(auth()->user()->education() && $user->student())
+<br>
 <div class="container ">
     <table class="shadow table table-striped table-sm table-hover">
+    <h5 class="mb-4">Work processes:</h5>
         <thead>
             <tr>
                 <th style="padding-left: 20px;" scope="col">Name</th>
@@ -131,6 +133,7 @@
                         <!-- <button type="submit">{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'Approve' : 'Undo' }}</button> -->
                         <!-- <button type="submit" class="btn btn-sm btn-outline-secondary">{{ $student_files->where('competition_id', $competition->id)->pluck('achieved')->first() == 0 ? 'Approve' : 'Undo' }}</button> -->
                     </form>
+                    
                     @endif
                 </td>
             </tr>
@@ -142,15 +145,25 @@
 @endif
 
 @if($logs->count() > 0)
+<br>
 <div class="container ">
+    <h5 class="mb-4">Logs:</h5>
+
     <table class="shadow table table-striped table-sm table-hover">
         <thead>
             <tr>
                 <th style="padding-left: 20px;" scope="col">Description</th>
                 <th scope="col">Hours</th>
                 <th scope="col">Date</th>
+                @if(auth()->user()->education())
+                <th scope="col">Interns at</th>
+                @endif
                 <!-- <th scope="col">Confirmed</th> -->
+                @if(auth()->user()->bpv())
                 <th scope="col">Actions</th>
+                @else
+                <th scope="col">Confirmed</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -159,7 +172,11 @@
                 <th style="padding-left: 20px;" scope="row">{{$log->description}}</th>
                 <th scope="row">{{$log->hours}}</th>
                 <th scope="row">{{ date('d/m/Y', strtotime($log->date)) }}</th>
+                @if(auth()->user()->education())
+                <th scope="row">{{App\Models\User::find($log->bpv_id)->organization}}</th>
+                @endif
                 <!-- <th scope="row">{{ $log->confirmed == 0 ? 'Not yet' : 'Yes' }}</th> -->
+                @if(auth()->user()->bpv())
                 <td>
                     <form method="POST" action="{{ route('approveLog', $log->id) }}">
                         @csrf
@@ -169,6 +186,11 @@
                         </button>
                     </form>
                 </td>
+                @else
+                <th scope="row">
+                    <ion-icon style="cursor: default; color:{{ $log->confirmed == 0 ? 'inherit' : 'green' }};" name="{{ $log->confirmed == 0 ? 'square-outline' : 'checkbox-outline' }}"></ion-icon>
+                </th>
+                @endif
             </tr>
             @endforeach
         </tbody>
